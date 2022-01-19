@@ -8,19 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		0229A76D2773270200DE69CF /* QuizProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0229A76C2773270200DE69CF /* QuizProjectApp.swift */; };
-		0229A76F2773270200DE69CF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0229A76E2773270200DE69CF /* ContentView.swift */; };
 		0229A7712773270A00DE69CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0229A7702773270A00DE69CF /* Assets.xcassets */; };
 		0229A7742773270A00DE69CF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0229A7732773270A00DE69CF /* Preview Assets.xcassets */; };
 		0229A77C27732A1200DE69CF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 0229A77B27732A1200DE69CF /* FirebaseAuth */; };
 		0229A77E27732A1200DE69CF /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 0229A77D27732A1200DE69CF /* FirebaseDatabase */; };
+		0229A784278B5D0200DE69CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0229A783278B5D0100DE69CF /* GoogleService-Info.plist */; };
+		0229A786278B5F4D00DE69CF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0229A785278B5F4D00DE69CF /* LoginView.swift */; };
+		0229A78C278B736300DE69CF /* InputTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0229A78B278B736300DE69CF /* InputTextFieldView.swift */; };
+		0229A790278B94C100DE69CF /* PasswordFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0229A78F278B94C100DE69CF /* PasswordFieldView.swift */; };
+		02EE408927960D4B0034B58B /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EE408827960D4B0034B58B /* RegisterView.swift */; };
+		02EE408B27960D5B0034B58B /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EE408A27960D5B0034B58B /* ButtonView.swift */; };
+		02EE409027989E5C0034B58B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EE408F27989E5C0034B58B /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0229A7692773270200DE69CF /* QuizProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0229A76C2773270200DE69CF /* QuizProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizProjectApp.swift; sourceTree = "<group>"; };
-		0229A76E2773270200DE69CF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0229A7702773270A00DE69CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0229A7732773270A00DE69CF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0229A783278B5D0100DE69CF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0229A785278B5F4D00DE69CF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		0229A78B278B736300DE69CF /* InputTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextFieldView.swift; sourceTree = "<group>"; };
+		0229A78F278B94C100DE69CF /* PasswordFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFieldView.swift; sourceTree = "<group>"; };
+		02EE408827960D4B0034B58B /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		02EE408A27960D5B0034B58B /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ButtonView.swift; path = QuizProject/Register/View/ButtonView.swift; sourceTree = SOURCE_ROOT; };
+		02EE408F27989E5C0034B58B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +67,12 @@
 		0229A76B2773270200DE69CF /* QuizProject */ = {
 			isa = PBXGroup;
 			children = (
+				02EE408D27989E240034B58B /* Home */,
+				02EE408627960D1E0034B58B /* Register */,
+				0229A789278B734200DE69CF /* Base */,
+				0229A787278B720500DE69CF /* Login */,
+				0229A783278B5D0100DE69CF /* GoogleService-Info.plist */,
 				0229A76C2773270200DE69CF /* QuizProjectApp.swift */,
-				0229A76E2773270200DE69CF /* ContentView.swift */,
 				0229A7702773270A00DE69CF /* Assets.xcassets */,
 				0229A7722773270A00DE69CF /* Preview Content */,
 			);
@@ -69,6 +85,72 @@
 				0229A7732773270A00DE69CF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0229A787278B720500DE69CF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0229A788278B721B00DE69CF /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		0229A788278B721B00DE69CF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0229A785278B5F4D00DE69CF /* LoginView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0229A789278B734200DE69CF /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				0229A78A278B734900DE69CF /* Views */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		0229A78A278B734900DE69CF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0229A78B278B736300DE69CF /* InputTextFieldView.swift */,
+				0229A78F278B94C100DE69CF /* PasswordFieldView.swift */,
+				02EE408A27960D5B0034B58B /* ButtonView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		02EE408627960D1E0034B58B /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				02EE408727960D2B0034B58B /* View */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		02EE408727960D2B0034B58B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				02EE408827960D4B0034B58B /* RegisterView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		02EE408D27989E240034B58B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				02EE408E27989E2D0034B58B /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		02EE408E27989E2D0034B58B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				02EE408F27989E5C0034B58B /* HomeView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +220,7 @@
 			files = (
 				0229A7742773270A00DE69CF /* Preview Assets.xcassets in Resources */,
 				0229A7712773270A00DE69CF /* Assets.xcassets in Resources */,
+				0229A784278B5D0200DE69CF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,7 +231,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0229A76F2773270200DE69CF /* ContentView.swift in Sources */,
+				0229A790278B94C100DE69CF /* PasswordFieldView.swift in Sources */,
+				02EE409027989E5C0034B58B /* HomeView.swift in Sources */,
+				02EE408927960D4B0034B58B /* RegisterView.swift in Sources */,
+				02EE408B27960D5B0034B58B /* ButtonView.swift in Sources */,
+				0229A786278B5F4D00DE69CF /* LoginView.swift in Sources */,
+				0229A78C278B736300DE69CF /* InputTextFieldView.swift in Sources */,
 				0229A76D2773270200DE69CF /* QuizProjectApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,6 +373,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -313,6 +403,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
