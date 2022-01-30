@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    @EnvironmentObject var sessionService: SessionServiceImpl
+    
     var body: some View {
         VStack(){
             Text("Quiz game")
                 .font(.title)
-            Text("Hello")//username
+            Text("Hello \(sessionService.userDetails?.username ?? "N/A")")
+            Text("You have \(sessionService.userDetails?.points ?? -1)")
+            ButtonView(title: "Logout") {
+                sessionService.logout()
+            }
         }
     }
 }
@@ -20,6 +27,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
-.previewInterfaceOrientation(.landscapeLeft)
+            .environmentObject(SessionServiceImpl())
     }
 }

@@ -20,10 +20,19 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
 struct QuizProjectApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject var sessionService = SessionServiceImpl()
     
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            NavigationView{
+                switch sessionService.state {
+                case .loggedIn:
+                    HomeView()
+                        .environmentObject(sessionService)
+                case .loggedOut:
+                    LoginView()
+                }
+            }
         }
     }
 }

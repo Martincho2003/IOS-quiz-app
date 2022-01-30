@@ -37,6 +37,7 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
     private var subsicriptions = Set<AnyCancellable>()
     
     func register() {
+        print(userDetails)
         service
             .register(with: userDetails)
             .sink { [weak self] res in

@@ -19,6 +19,7 @@ class RegistrationService{
                     .createUser(withEmail: details.email, password: details.password) {
                         res, error in
                         if let err = error {
+                            print(err)
                             promise(.failure(err))
                         } else {
                             if let uid = res?.user.uid {

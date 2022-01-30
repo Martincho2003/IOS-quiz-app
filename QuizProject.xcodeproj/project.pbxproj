@@ -22,6 +22,8 @@
 		02EE40962799F6580034B58B /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EE40952799F6580034B58B /* RegistrationService.swift */; };
 		02EE4098279A0FA70034B58B /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EE4097279A0FA70034B58B /* RegistrationViewModel.swift */; };
 		02EE409B279A1CAF0034B58B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 02EE409A279A1CAF0034B58B /* GoogleService-Info.plist */; };
+		02EE409F27A7224D0034B58B /* SessionUserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EE409E27A7224D0034B58B /* SessionUserDetails.swift */; };
+		02EE40A227A7244C0034B58B /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EE40A127A7244C0034B58B /* SessionService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		02EE40952799F6580034B58B /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		02EE4097279A0FA70034B58B /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		02EE409A279A1CAF0034B58B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		02EE409E27A7224D0034B58B /* SessionUserDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionUserDetails.swift; sourceTree = "<group>"; };
+		02EE40A127A7244C0034B58B /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,7 @@
 		0229A76B2773270200DE69CF /* QuizProject */ = {
 			isa = PBXGroup;
 			children = (
+				02EE409C27A722040034B58B /* Session */,
 				02EE408D27989E240034B58B /* Home */,
 				02EE408627960D1E0034B58B /* Register */,
 				0229A789278B734200DE69CF /* Base */,
@@ -186,6 +191,31 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		02EE409C27A722040034B58B /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				02EE40A027A724260034B58B /* Service */,
+				02EE409D27A722350034B58B /* Model */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		02EE409D27A722350034B58B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				02EE409E27A7224D0034B58B /* SessionUserDetails.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		02EE40A027A724260034B58B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				02EE40A127A7244C0034B58B /* SessionService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -264,9 +294,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02EE40A227A7244C0034B58B /* SessionService.swift in Sources */,
 				0229A790278B94C100DE69CF /* PasswordFieldView.swift in Sources */,
 				02EE409027989E5C0034B58B /* HomeView.swift in Sources */,
 				02EE408927960D4B0034B58B /* RegisterView.swift in Sources */,
+				02EE409F27A7224D0034B58B /* SessionUserDetails.swift in Sources */,
 				02EE408B27960D5B0034B58B /* ButtonView.swift in Sources */,
 				02EE40962799F6580034B58B /* RegistrationService.swift in Sources */,
 				02EE4098279A0FA70034B58B /* RegistrationViewModel.swift in Sources */,
