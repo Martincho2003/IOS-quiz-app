@@ -10,13 +10,13 @@ import Foundation
 import Firebase
 
 class RegistrationService{
-    func register(with details: RegistrationModel) -> AnyPublisher<Void, Error> {
+    func register(emaill: String, pass: String, usrname: String) -> AnyPublisher<Void, Error> {
         Deferred{
             Future{
                 promise in
                 
                 Auth.auth()
-                    .createUser(withEmail: details.email, password: details.password) {
+                    .createUser(withEmail: emaill, password: pass) {
                         res, error in
                         if let err = error {
                             print(err)
@@ -27,7 +27,7 @@ class RegistrationService{
                                     .reference()
                                     .child("users")
                                     .child(uid)
-                                    .updateChildValues(["username": details.username, "points": details.points]) { error, ref in
+                                    .updateChildValues(["username": usrname, "points": 0]) { error, ref in
                                         if let err = error {
                                             promise(.failure(err))
                                         } else {

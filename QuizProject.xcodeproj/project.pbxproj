@@ -18,7 +18,6 @@
 		02EE408927960D4B0034B58B /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EE408827960D4B0034B58B /* RegisterView.swift */; };
 		02EE408B27960D5B0034B58B /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EE408A27960D5B0034B58B /* ButtonView.swift */; };
 		02EE409027989E5C0034B58B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EE408F27989E5C0034B58B /* HomeView.swift */; };
-		02EE40932799F5A30034B58B /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EE40922799F5A30034B58B /* RegistrationModel.swift */; };
 		02EE40962799F6580034B58B /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EE40952799F6580034B58B /* RegistrationService.swift */; };
 		02EE4098279A0FA70034B58B /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EE4097279A0FA70034B58B /* RegistrationViewModel.swift */; };
 		02EE409B279A1CAF0034B58B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 02EE409A279A1CAF0034B58B /* GoogleService-Info.plist */; };
@@ -37,7 +36,6 @@
 		02EE408827960D4B0034B58B /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		02EE408A27960D5B0034B58B /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ButtonView.swift; path = QuizProject/Register/View/ButtonView.swift; sourceTree = SOURCE_ROOT; };
 		02EE408F27989E5C0034B58B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		02EE40922799F5A30034B58B /* RegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
 		02EE40952799F6580034B58B /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		02EE4097279A0FA70034B58B /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		02EE409A279A1CAF0034B58B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -137,7 +135,6 @@
 			children = (
 				02EE4099279A110A0034B58B /* Service */,
 				02EE40942799F61E0034B58B /* ViewModel */,
-				02EE40912799F5800034B58B /* Model */,
 				02EE408727960D2B0034B58B /* View */,
 			);
 			path = Register;
@@ -165,14 +162,6 @@
 				02EE408F27989E5C0034B58B /* HomeView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		02EE40912799F5800034B58B /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				02EE40922799F5A30034B58B /* RegistrationModel.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		02EE40942799F61E0034B58B /* ViewModel */ = {
@@ -304,7 +293,6 @@
 				02EE4098279A0FA70034B58B /* RegistrationViewModel.swift in Sources */,
 				0229A786278B5F4D00DE69CF /* LoginView.swift in Sources */,
 				0229A78C278B736300DE69CF /* InputTextFieldView.swift in Sources */,
-				02EE40932799F5A30034B58B /* RegistrationModel.swift in Sources */,
 				0229A76D2773270200DE69CF /* QuizProjectApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
