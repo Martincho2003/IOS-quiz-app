@@ -34,6 +34,8 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
     @Published var isError: Bool = false
     var eror: Error?
     
+    private var subscriptions = Set<AnyCancellable>()
+    
     init(service: RegistrationService) {
         self.service = service
     }
@@ -52,6 +54,7 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
             } receiveValue: { [weak self] in
                 self?.state = .successfull
             }
+            .store(in: &subscriptions)
     }
     
     func isValidPassword() -> Bool {
@@ -68,9 +71,10 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
         }
     
     func isRegistrationEnabled() -> Bool {
+        print("hah0")
         if (isValidPassword()){
             if (isValidEmail()){
-                if (username.count >= 5){
+                if (username.count >= 4){
                     return true
                 }
             }

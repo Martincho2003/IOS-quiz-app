@@ -11,15 +11,14 @@ import Firebase
 
 class RegistrationService{
     func register(emaill: String, pass: String, usrname: String) -> AnyPublisher<Void, Error> {
-        Deferred{
-            Future{
+        Deferred {
+            Future {
                 promise in
                 
                 Auth.auth()
                     .createUser(withEmail: emaill, password: pass) {
                         res, error in
                         if let err = error {
-                            print(err)
                             promise(.failure(err))
                         } else {
                             if let uid = res?.user.uid {

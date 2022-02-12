@@ -11,6 +11,8 @@ import Firebase
 struct LoginView: View {
     
     @State private var isRegister: Bool = false
+    
+    @StateObject private var vm = LoginViewModelImpl(service: LoginSerivce())
 
     var body: some View {
         VStack(spacing: 16) {
@@ -19,9 +21,19 @@ struct LoginView: View {
             Text("Login")
                 .font(.system(size: 40, weight: .bold))
             Spacer()
-            InputTextField(text: .constant(""), placeholder: "Email", keyboardType: .emailAddress, symbol: "envelope")
-            PasswordFieldView(text: .constant(""), placeholder: "Password", symbol: "lock")
-            ButtonView(title: "Login") { }
+            InputTextField(text: $vm.email, placeholder: "Email", keyboardType: .emailAddress, symbol: "envelope")
+                .autocapitalization(.none)
+            PasswordFieldView(text: $vm.password, placeholder: "Password", symbol: "lock")
+            ButtonView(title: "Login") {
+                vm.login()
+            }
+            .disabled(!vm.isLoginEnabled())
+            .alert(isPresented: $vm.isError) {
+                Alert(
+                    title: Text("Error"),
+                    message: Text(vm.eror?.localizedDescription ?? "No error")
+                )
+            }
             ButtonView(title: "Register", background: .white, foreground: .blue, border: .blue) { isRegister.toggle()
             }
             .sheet(isPresented: $isRegister) {
