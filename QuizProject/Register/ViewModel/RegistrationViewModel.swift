@@ -57,27 +57,9 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
             .store(in: &subscriptions)
     }
     
-    func isValidPassword() -> Bool {
-        let passwordRegx = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$"
-        let passwordCheck = NSPredicate(format: "SELF MATCHES %@",passwordRegx)
-        return passwordCheck.evaluate(with: password)
-
-    }
-    
-    func isValidEmail() -> Bool{
-            let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-            let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
-            return emailPredicate.evaluate(with: email)
-        }
-    
     func isRegistrationEnabled() -> Bool {
-        print("hah0")
-        if (isValidPassword()){
-            if (isValidEmail()){
-                if (username.count >= 4){
-                    return true
-                }
-            }
+        if (isValidPassword(password) && isValidEmail(email) && username.count >= 4){
+            return true
         }
         return false
     }

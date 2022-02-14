@@ -17,6 +17,7 @@
 		0229A790278B94C100DE69CF /* PasswordFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0229A78F278B94C100DE69CF /* PasswordFieldView.swift */; };
 		0298826827B83EF700B6E9ED /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298826727B83EF700B6E9ED /* LoginService.swift */; };
 		0298826A27B8437B00B6E9ED /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298826927B8437B00B6E9ED /* LoginViewModel.swift */; };
+		0298826D27BA95B500B6E9ED /* CredentialsCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298826C27BA95B500B6E9ED /* CredentialsCheck.swift */; };
 		02EE408927960D4B0034B58B /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EE408827960D4B0034B58B /* RegisterView.swift */; };
 		02EE408B27960D5B0034B58B /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EE408A27960D5B0034B58B /* ButtonView.swift */; };
 		02EE409027989E5C0034B58B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EE408F27989E5C0034B58B /* HomeView.swift */; };
@@ -37,6 +38,7 @@
 		0229A78F278B94C100DE69CF /* PasswordFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFieldView.swift; sourceTree = "<group>"; };
 		0298826727B83EF700B6E9ED /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		0298826927B8437B00B6E9ED /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		0298826C27BA95B500B6E9ED /* CredentialsCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsCheck.swift; sourceTree = "<group>"; };
 		02EE408827960D4B0034B58B /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		02EE408A27960D5B0034B58B /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ButtonView.swift; path = QuizProject/Register/View/ButtonView.swift; sourceTree = SOURCE_ROOT; };
 		02EE408F27989E5C0034B58B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 		0229A789278B734200DE69CF /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				0298826B27BA959400B6E9ED /* Functions */,
 				0229A78A278B734900DE69CF /* Views */,
 			);
 			path = Base;
@@ -150,6 +153,14 @@
 				0298826727B83EF700B6E9ED /* LoginService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		0298826B27BA959400B6E9ED /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				0298826C27BA95B500B6E9ED /* CredentialsCheck.swift */,
+			);
+			path = Functions;
 			sourceTree = "<group>";
 		};
 		02EE408627960D1E0034B58B /* Register */ = {
@@ -316,6 +327,7 @@
 				0298826A27B8437B00B6E9ED /* LoginViewModel.swift in Sources */,
 				02EE4098279A0FA70034B58B /* RegistrationViewModel.swift in Sources */,
 				0229A786278B5F4D00DE69CF /* LoginView.swift in Sources */,
+				0298826D27BA95B500B6E9ED /* CredentialsCheck.swift in Sources */,
 				0229A78C278B736300DE69CF /* InputTextFieldView.swift in Sources */,
 				0229A76D2773270200DE69CF /* QuizProjectApp.swift in Sources */,
 			);
