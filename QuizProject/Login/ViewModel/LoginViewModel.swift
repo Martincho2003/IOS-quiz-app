@@ -40,7 +40,9 @@ final class LoginViewModelImpl: ObservableObject, LoginViewModel {
     
     
     func isLoginEnabled() -> Bool{
-        if (isValidPassword(password) && isValidEmail(email)){
+        print("hah")
+        if (password.isValidPassword() && email.isValidEmail()){
+            print("yeah")
             return true
         }
         return false
