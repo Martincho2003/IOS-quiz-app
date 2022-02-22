@@ -13,6 +13,8 @@ struct HomeView: View {
     
     @State private var showDifficulty: Bool = false
     
+    @State private var isGame: Bool = false
+    
     var body: some View {
         ZStack(){
             VStack(){
@@ -38,6 +40,11 @@ struct HomeView: View {
                     print(showDifficulty)
                 } label: {
                     Text("Normal Game")
+                }
+                ButtonView(title: "Game", background: .white, foreground: .blue, border: .blue) { isGame.toggle()
+                }
+                .sheet(isPresented: $isGame) {
+                    QuestionView()
                 }
                 Spacer()
 

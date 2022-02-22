@@ -29,6 +29,7 @@ struct QuizProjectApp: App {
                 case .loggedIn:
                     HomeView()
                         .environmentObject(sessionService)
+                    //QuestionView()
                 case .loggedOut:
                     LoginView()
                 }
