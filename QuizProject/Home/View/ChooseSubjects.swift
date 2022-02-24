@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ChooseSubjects: View {
     
-    @ObservedObject private var vm = SubjectViewModel()
+    @ObservedObject private var vm: SubjectViewModel
+    
+    init(vm: SubjectViewModel){
+        self.vm = vm
+    }
     
     var body: some View {
         VStack {
@@ -29,17 +33,12 @@ struct ChooseSubjects: View {
                 }
             }
             Spacer()
-            ButtonView(title: "Continue") {
-                vm.sendSubjects()
-            }
-            Spacer()
-                .frame(height: 20)
         }
     }
 }
 
 struct ChooseSubjects_Previews: PreviewProvider {
     static var previews: some View {
-        ChooseSubjects()
+        ChooseSubjects(vm: SubjectViewModel())
     }
 }

@@ -19,9 +19,9 @@ final class NormalGameViewModel: ObservableObject {
     @Published var currentQuestion: Int = 0
     @Published var seconds: Int = 20
     
-    init(service: GameService){
+    init(service: GameService, subjects: [Subject], diffs: [Difficulty]){
         self.service = service
-        service.getQuestionsFromPub(difficulties: [.easy, .hard], subjects: [.biology])
+        service.getQuestionsFromPub(difficulties: diffs, subjects: subjects)
             .sink { error in
             print(error)
         } receiveValue: { [self] question in

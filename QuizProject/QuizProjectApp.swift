@@ -40,16 +40,26 @@ struct QuizProjectApp: App {
 }
 
 class Coordinator {
-    @EnvironmentObject var sessionService: SessionServiceImpl
     var difficulties: [Difficulty] = []
     var subjects: [Subject] = []
+    @Published var homeViewModel = HomeViewModel()
+    @ObservedObject var difficultyVM = DifficultyViewModel()
     
-    func homeView() -> HomeView {
-        //let homeViewModel = HomeViewModel()
-//        homeViewModel.gameClicked = {
-//            //show difficulty
-//        }
-        let homeView = HomeView()
-        return homeView
+    func homeView() -> some View {
+        print("c c\(homeViewModel.showDifficulty)")
+        if (homeViewModel.showDifficulty){
+            return AnyView(ChooseDifficulty(vm: difficultyVM))
+        }
+        
+        //let homeView =
+        return AnyView(HomeView(vm: homeViewModel))
     }
+    
+//    func choosedifficulty() -> ChooseDifficulty {
+//        @ObservedObject var difficultyVM = DifficultyViewModel()
+//        if (difficultyVM.isReady) {
+//            difficulties.append(contentsOf: difficultyVM.sendDifficulties())
+//        }
+//
+//    }
 }

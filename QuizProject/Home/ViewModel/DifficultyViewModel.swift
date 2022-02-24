@@ -10,11 +10,11 @@ import Combine
 
 final class DifficultyViewModel: ObservableObject {
     @Published var isCheckedEasy: Bool = false
-    @Published var isCheckdHard: Bool = false
+    @Published var isCheckedHard: Bool = false
     private var difficulties: [Difficulty] = []
     
     private func reloadDifficulties() {
-        if (isCheckdHard) {
+        if (isCheckedHard) {
             difficulties.append(.hard)
         }
         if (isCheckedEasy) {
@@ -25,7 +25,6 @@ final class DifficultyViewModel: ObservableObject {
     func sendDifficulties() -> [Difficulty] {
         reloadDifficulties()
         print(difficulties)
-        //sendthem to another view
         return difficulties
     }
 }

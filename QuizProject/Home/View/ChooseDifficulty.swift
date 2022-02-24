@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ChooseDifficulty: View {
     
-    @ObservedObject private var vm = DifficultyViewModel()
+    @ObservedObject private var vm: DifficultyViewModel //= DifficultyViewModel()
+    
+    init(vm: DifficultyViewModel) {
+        self.vm = vm
+    }
     
     var body: some View {
         VStack(alignment: .center){
@@ -28,32 +32,23 @@ struct ChooseDifficulty: View {
             }
             Spacer()
             HStack{
-                if vm.isCheckdHard {
+                if vm.isCheckedHard {
                     Text("✅")
                 } else {
                     Text("🔲")
                 }
                 Button {
-                    vm.isCheckdHard.toggle()
+                    vm.isCheckedHard.toggle()
                 } label: {
                     Text("Hard mode")
                 }
             }
-            Spacer()
-            ButtonView(title: "Continue") {
-                vm.sendDifficulties()
-            }
-            Spacer()
-                .frame(height: 20)
-
         }
-        .frame(width: 200, height: 350, alignment: .center)
-        .background(.black.opacity(0.9))
     }
 }
 
 struct ChooseDifficulty_Previews: PreviewProvider {
     static var previews: some View {
-        ChooseDifficulty()
+        ChooseDifficulty(vm:  DifficultyViewModel())
     }
 }

@@ -9,11 +9,19 @@ import SwiftUI
 
 struct QuestionView: View {
     
-    @StateObject private var vm = NormalGameViewModel(service: GameService())
+    @ObservedObject private var vm: NormalGameViewModel //= NormalGameViewModel(service: GameService())
+    @EnvironmentObject var sessionService: SessionServiceImpl
+    
+    init(vm: NormalGameViewModel){
+        self.vm = vm
+    }
     
     var body: some View {
         VStack{
             Text("Seconds")
+            if(sessionService.state == .loggedIn){
+                Text("logged")
+            }
             Spacer()
             
             if (!vm.questions.isEmpty){
@@ -34,6 +42,6 @@ struct QuestionView: View {
 
 struct QuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionView()
+        QuestionView(vm: NormalGameViewModel(service: GameService(), subjects: [.biology], diffs: [.hard]))
     }
 }
