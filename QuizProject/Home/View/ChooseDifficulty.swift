@@ -8,21 +8,44 @@
 import SwiftUI
 
 struct ChooseDifficulty: View {
+    
+    @ObservedObject private var vm = DifficultyViewModel()
+    
     var body: some View {
         VStack(alignment: .center){
             Spacer()
-            Button {
-                print("ha")
-            } label: {
-                Text("Easy mode")
+            HStack{
+                if vm.isCheckedEasy {
+                    Text("✅")
+                } else {
+                    Text("🔲")
+                }
+                Button {
+                    vm.isCheckedEasy.toggle()
+                } label: {
+                    Text("Easy mode")
+                }
             }
             Spacer()
-            Button {
-                print("ha2")
-            } label: {
-                Text("Hard mode")
+            HStack{
+                if vm.isCheckdHard {
+                    Text("✅")
+                } else {
+                    Text("🔲")
+                }
+                Button {
+                    vm.isCheckdHard.toggle()
+                } label: {
+                    Text("Hard mode")
+                }
             }
             Spacer()
+            ButtonView(title: "Continue") {
+                vm.sendDifficulties()
+            }
+            Spacer()
+                .frame(height: 20)
+
         }
         .frame(width: 200, height: 350, alignment: .center)
         .background(.black.opacity(0.9))

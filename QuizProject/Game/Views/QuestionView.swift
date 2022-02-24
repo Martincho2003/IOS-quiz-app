@@ -17,9 +17,9 @@ struct QuestionView: View {
             Spacer()
             
             if (!vm.questions.isEmpty){
-                Text(vm.questions[vm.currecntQuestion].question)
+                Text(vm.questions[vm.currentQuestion].question)
                 Spacer()
-                ForEach(vm.questions[vm.currecntQuestion].answers, id: \.self) { answer in
+                ForEach(vm.questions[vm.currentQuestion].answers, id: \.self) { answer in
                     Button {
                         print(vm.checkAnswer(answer))
                     } label: {

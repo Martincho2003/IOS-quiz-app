@@ -21,19 +21,35 @@ struct QuizProjectApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var sessionService = SessionServiceImpl()
+    let coordinator: Coordinator = Coordinator()
     
     var body: some Scene {
         WindowGroup {
             NavigationView{
                 switch sessionService.state {
                 case .loggedIn:
-                    HomeView()
-                        .environmentObject(sessionService)
-                    //QuestionView()
+                    //HomeView()
+                    coordinator.homeView().environmentObject(sessionService)
+                    //HomeView().environmentObject(sessionService)
                 case .loggedOut:
                     LoginView()
                 }
             }
         }
+    }
+}
+
+class Coordinator {
+    @EnvironmentObject var sessionService: SessionServiceImpl
+    var difficulties: [Difficulty] = []
+    var subjects: [Subject] = []
+    
+    func homeView() -> HomeView {
+        //let homeViewModel = HomeViewModel()
+//        homeViewModel.gameClicked = {
+//            //show difficulty
+//        }
+        let homeView = HomeView()
+        return homeView
     }
 }

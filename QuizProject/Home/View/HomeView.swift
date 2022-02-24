@@ -9,11 +9,13 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @ObservedObject private var vm: HomeViewModel  = HomeViewModel()
+    
     @EnvironmentObject var sessionService: SessionServiceImpl
     
-    @State private var showDifficulty: Bool = false
-    
-    @State private var isGame: Bool = false
+//    init(vm: HomeViewModel){
+//        self.vm = vm
+//    }
     
     var body: some View {
         ZStack(){
@@ -36,20 +38,24 @@ struct HomeView: View {
                 }
                 Spacer()
                 Button {
-                    showDifficulty.toggle()
-                    print(showDifficulty)
+                    vm.showDifficulty.toggle()
+                    print(vm.showDifficulty)
                 } label: {
-                    Text("Normal Game")
+                    Text("Single Player Game")
                 }
-                ButtonView(title: "Game", background: .white, foreground: .blue, border: .blue) { isGame.toggle()
+                Button {
+                } label: {
+                    Text("Multiplayer Game")
                 }
-                .sheet(isPresented: $isGame) {
+                ButtonView(title: "Game", background: .white, foreground: .blue, border: .blue) { vm.isGame.toggle()
+                }
+                .sheet(isPresented: $vm.isGame) {
                     QuestionView()
                 }
                 Spacer()
 
             }
-            if self.showDifficulty {
+            if vm.showDifficulty {
                 GeometryReader{ geometry in
                     ChooseDifficulty()
                         .position(x: geometry.frame(in: .local).midX, y: geometry.frame(in: .local).midY)
@@ -58,7 +64,7 @@ struct HomeView: View {
                         Color.black.opacity(0.65)
                             .edgesIgnoringSafeArea(.all)
                             .onTapGesture {
-                                self.showDifficulty.toggle()
+                                vm.showDifficulty.toggle()
                             }
                 )
             }
@@ -69,6 +75,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
-            .environmentObject(SessionServiceImpl())
+        //HomeView(vm: HomeViewModel(sessionService: SessionServiceImpl()))
     }
 }

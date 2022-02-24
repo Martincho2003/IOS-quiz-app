@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import FirebaseAuth
 import FirebaseDatabase
+import Firebase
 
 enum SessionState {
     case loggedIn
@@ -26,6 +27,8 @@ final class SessionServiceImpl: ObservableObject, SessionService {
     @Published var state: SessionState = .loggedOut
     @Published var userDetails: SessionUserDetails?
     
+    var statep = PassthroughSubject<SessionState, Never>()
+    
     private var handler: AuthStateDidChangeListenerHandle?
     
     init() {
@@ -36,6 +39,7 @@ final class SessionServiceImpl: ObservableObject, SessionService {
                 if let uid = user?.uid {
                     self.refreshDetails(with: uid)
                 }
+                self.statep.send(self.state)
             })
     }
     
