@@ -55,5 +55,4 @@ class Coordinator {
         //let homeView =
         return AnyView(HomeView())
     }
-    
 }

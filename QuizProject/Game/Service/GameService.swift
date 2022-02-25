@@ -45,8 +45,6 @@ class GameService {
         }
         .eraseToAnyPublisher()
     }
-    
-    
         
     func getQuestionsFromPub(difficulties: [Difficulty], subjects: [Subject]) -> AnyPublisher<[NewQuestion], Error> {
         Deferred {

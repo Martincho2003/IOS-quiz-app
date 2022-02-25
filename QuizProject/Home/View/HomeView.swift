@@ -9,9 +9,12 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @ObservedObject private var vm: HomeViewModel = HomeViewModel()
-    
+    @ObservedObject private var vm: HomeViewModel = HomeViewModel()    
     @EnvironmentObject var sessionService: SessionServiceImpl
+    
+    init(vm: HomeViewModel){
+        self.vm = vm
+    }
     
     var body: some View {
         if(!vm.isGame){

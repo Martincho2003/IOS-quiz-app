@@ -9,8 +9,7 @@ import SwiftUI
 
 struct QuestionView: View {
     
-    @ObservedObject private var vm: NormalGameViewModel //= NormalGameViewModel(service: GameService())
-    
+    @ObservedObject private var vm: NormalGameViewModel //= NormalGameViewModel(service: GameService())  
     @EnvironmentObject var sessionService: SessionServiceImpl
     
     init(vm: NormalGameViewModel){
