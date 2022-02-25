@@ -58,7 +58,7 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
     }
     
     func isRegistrationEnabled() -> Bool {
-        if (isValidPassword(password) && isValidEmail(email) && username.count >= 4){
+        if (password.isValidPassword && email.isValidEmail && username.count >= 4){
             return true
         }
         return false
