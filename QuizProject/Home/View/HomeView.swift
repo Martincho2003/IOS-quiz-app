@@ -9,13 +9,9 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @ObservedObject private var vm: HomeViewModel //= HomeViewModel()
+    @ObservedObject private var vm: HomeViewModel = HomeViewModel()
     
     @EnvironmentObject var sessionService: SessionServiceImpl
-    
-    init(vm: HomeViewModel){
-        self.vm = vm
-    }
     
     var body: some View {
         if(!vm.isGame){
@@ -72,7 +68,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(vm: HomeViewModel())
+        HomeView()
         //HomeView(vm: HomeViewModel(sessionService: SessionServiceImpl()))
     }
 }

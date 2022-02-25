@@ -29,8 +29,10 @@ struct QuizProjectApp: App {
                 switch sessionService.state {
                 case .loggedIn:
                     //HomeView()
-                    coordinator.homeView().environmentObject(sessionService)
-                    //HomeView().environmentObject(sessionService)
+                    //coordinator.homeView().environmentObject(sessionService)
+                    NavigationView{
+                        HomeView().environmentObject(sessionService)
+                    }
                 case .loggedOut:
                     LoginView()
                 }
@@ -46,20 +48,12 @@ class Coordinator {
     @ObservedObject var difficultyVM = DifficultyViewModel()
     
     func homeView() -> some View {
-        print("c c\(homeViewModel.showDifficulty)")
         if (homeViewModel.showDifficulty){
             return AnyView(ChooseDifficulty(vm: difficultyVM))
         }
         
         //let homeView =
-        return AnyView(HomeView(vm: homeViewModel))
+        return AnyView(HomeView())
     }
     
-//    func choosedifficulty() -> ChooseDifficulty {
-//        @ObservedObject var difficultyVM = DifficultyViewModel()
-//        if (difficultyVM.isReady) {
-//            difficulties.append(contentsOf: difficultyVM.sendDifficulties())
-//        }
-//
-//    }
 }
