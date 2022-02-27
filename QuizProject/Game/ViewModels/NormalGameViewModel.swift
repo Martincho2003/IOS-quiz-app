@@ -20,6 +20,8 @@ final class NormalGameViewModel: ObservableObject {
     @Published var seconds: [Int] = []
     var points = 0
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @Published var isAddTime: [Bool] = []
+    @Published var isExclude: [Bool] = []
     
     init(service: GameService, subjects: [Subject], diffs: [Difficulty]){
         self.service = service
@@ -34,7 +36,8 @@ final class NormalGameViewModel: ObservableObject {
                 }else{
                     seconds.append(20)
                 }
-                
+                isAddTime.append(false)
+                isExclude.append(false)
             }
         }
         .store(in: &cancellable)
@@ -61,5 +64,22 @@ final class NormalGameViewModel: ObservableObject {
             }
             currentQuestion += 1
         }
+    }
+    
+    func addTime() {
+        seconds[currentQuestion] += 20
+        points -= 2
+        isAddTime[currentQuestion].toggle()
+    }
+    
+    func excludeAnswers(){
+        while (questions[currentQuestion].answers.count != 2){
+            let rand = Int.random(in: 0..<4)
+            if(questions[currentQuestion].answers[rand].is_correct == ""){
+                questions[currentQuestion].answers.remove(at: rand)
+            }
+        }
+        points -= 4
+        isExclude[currentQuestion].toggle()
     }
 }

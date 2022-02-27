@@ -48,7 +48,7 @@ class Coordinator {
     @ObservedObject var difficultyVM = DifficultyViewModel()
     
     func homeView() -> some View {
-        if (homeViewModel.showDifficulty){
+        if (homeViewModel.showGameMode){
             return AnyView(ChooseDifficulty(vm: difficultyVM))
         }
         

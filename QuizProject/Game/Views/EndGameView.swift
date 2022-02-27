@@ -20,6 +20,7 @@ struct EndGameView: View {
             NavigationLink(destination: HomeView().environmentObject(sessionService)) {
                 Text("Go back")
             }
+            .navigationBarBackButtonHidden(true)
         }
     }
 }

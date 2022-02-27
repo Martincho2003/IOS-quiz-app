@@ -12,13 +12,9 @@ struct HomeView: View {
     @ObservedObject private var vm: HomeViewModel = HomeViewModel()    
     @EnvironmentObject var sessionService: SessionServiceImpl
     
-    init(vm: HomeViewModel){
-        self.vm = vm
-    }
-    
     var body: some View {
         if(!vm.isGame){
-            if(!vm.showDifficulty){
+            if(!vm.showGameMode){
                 VStack(){
                     HStack(){
                         Spacer()
@@ -38,8 +34,8 @@ struct HomeView: View {
                     }
                     Spacer()
                     Button {
-                        vm.showDifficulty.toggle()
-                        print(vm.showDifficulty)
+                        vm.showGameMode.toggle()
+                        print(vm.showGameMode)
                     } label: {
                         Text("Single Player Game")
                     }
