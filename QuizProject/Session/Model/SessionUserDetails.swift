@@ -10,4 +10,6 @@ import Foundation
 struct SessionUserDetails {
     let username: String
     var points: Int
+    var last_day_played: String
+    var played_games: Int
 }

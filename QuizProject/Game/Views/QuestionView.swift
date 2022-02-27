@@ -19,17 +19,12 @@ struct QuestionView: View {
     var body: some View {
         VStack{
             if(vm.currentQuestion == 10){
-                EndGameView().environmentObject(sessionService)
+                EndGameView(points: vm.points).environmentObject(sessionService)
             }else{
                 if(!vm.questions.isEmpty){
                     Text("\(vm.seconds[vm.currentQuestion])")
                         .onReceive(vm.timer) { _ in
                             vm.seconds[vm.currentQuestion] -= 1
-                            print(vm.questions.count)
-                            print(vm.seconds.count)
-                            print(vm.isAddTime.count)
-                            print(vm.isExclude.count)
-                            print("\n")
                             vm.checkSeconds()
                         }
                     

@@ -61,9 +61,11 @@ final class SessionServiceImpl: ObservableObject, SessionService {
                 let value = user.value as? NSDictionary
                 let username = value?["username"] as? String
                 let points = value?["points"] as? Int
+                let day = value?["last_day_played"] as? String
+                let times = value?["played_games"] as? Int
                 
                 DispatchQueue.main.async {
-                    self.userDetails = SessionUserDetails(username: username ?? "N/A", points: points ?? -1)
+                    self.userDetails = SessionUserDetails(username: username ?? "N/A", points: points ?? -1, last_day_played: day ?? "", played_games: times ?? 0)
                 }
             }
     }

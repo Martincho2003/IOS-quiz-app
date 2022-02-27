@@ -67,7 +67,7 @@ class GameService {
         .eraseToAnyPublisher()
     }
     
-    private func getUserPoints() -> AnyPublisher<Int,Error>{
+    private func getUserDetails() -> AnyPublisher<SessionUserDetails,Error>{
         Deferred {
             Future { promise in
                 let userID = Auth.auth().currentUser!.uid
@@ -79,9 +79,12 @@ class GameService {
                             print(error!.localizedDescription)
                             return;
                         }
-                        let userInfo = user.value as? NSDictionary
-                        let usrPoints = userInfo?["points"] as? Int
-                        promise(.success(usrPoints!))
+                        let value = user.value as? NSDictionary
+                        let username = value?["username"] as? String
+                        let points = value?["points"] as? Int
+                        let day = value?["last_day_played"] as? String
+                        let times = value?["played_games"] as? Int
+                        promise(.success(SessionUserDetails(username: username ?? "", points: points ?? 0, last_day_played: day ?? "", played_games: times ?? 0)))
                     }
             }
         }
@@ -90,18 +93,28 @@ class GameService {
     
     func sendPoints(_ gamePoints: Int) {
         let userID = Auth.auth().currentUser!.uid
-        var userPoints = 0
-        getUserPoints()
+        var userInfo: SessionUserDetails? = nil
+        let format = DateFormatter()
+        format.dateFormat = "MM-dd-yyyy"
+        getUserDetails()
             .sink { res in
                 switch res {
                 case .finished:
                     let ref = Database.database().reference()
-                    ref.child("users/\(userID)/points").setValue(userPoints+gamePoints)
+                    if (Calendar.current.isDate(format.date(from: userInfo!.last_day_played)!, equalTo: Date(), toGranularity: .day)) {
+                        if (userInfo!.played_games < 3) {
+                            ref.child("users/\(userID)").updateChildValues(["points": userInfo!.points + gamePoints,
+                                                                            "played_games": userInfo!.played_games + 1])
+                        }
+                    } else {
+                        ref.child("users/\(userID)").updateChildValues(["points": userInfo!.points + gamePoints,
+                                                                        "played_games": 1])
+                    }
                 case .failure(_):
                     print(res)
                 }
             } receiveValue: { pointsDB in
-                userPoints = pointsDB
+                userInfo = pointsDB
             }
             .store(in: &cancellable)
     }

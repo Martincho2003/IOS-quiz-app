@@ -22,11 +22,16 @@ class RegistrationService{
                             promise(.failure(err))
                         } else {
                             if let uid = res?.user.uid {
+                                let format = DateFormatter()
+                                format.dateFormat = "MM-dd-yyyy"
                                 Database.database()
                                     .reference()
                                     .child("users")
                                     .child(uid)
-                                    .updateChildValues(["username": usrname, "points": 0]) { error, ref in
+                                    .updateChildValues(["username": usrname,
+                                                        "points": 0,
+                                                        "last_day_played" : format.string(from: Date()),
+                                                        "played_games": 0]) { error, ref in
                                         if let err = error {
                                             promise(.failure(err))
                                         } else {

@@ -25,17 +25,15 @@ struct QuizProjectApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationView{
-                switch sessionService.state {
-                case .loggedIn:
-                    //HomeView()
-                    //coordinator.homeView().environmentObject(sessionService)
-                    NavigationView{
-                        HomeView().environmentObject(sessionService)
-                    }
-                case .loggedOut:
-                    LoginView()
+            switch sessionService.state {
+            case .loggedIn:
+                //HomeView()
+                //coordinator.homeView().environmentObject(sessionService)
+                NavigationView{
+                    HomeView().environmentObject(sessionService)
                 }
+            case .loggedOut:
+                LoginView()
             }
         }
     }

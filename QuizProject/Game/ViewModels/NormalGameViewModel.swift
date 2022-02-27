@@ -74,9 +74,12 @@ final class NormalGameViewModel: ObservableObject {
     
     func excludeAnswers(){
         while (questions[currentQuestion].answers.count != 2){
-            let rand = Int.random(in: 0..<4)
-            if(questions[currentQuestion].answers[rand].is_correct == ""){
-                questions[currentQuestion].answers.remove(at: rand)
+            for _ in 0..<questions[currentQuestion].answers.count {
+                let rand = Int.random(in: 0..<questions[currentQuestion].answers.count)
+                if(questions[currentQuestion].answers[rand].is_correct == ""){
+                    questions[currentQuestion].answers.remove(at: rand)
+                    break;
+                }
             }
         }
         points -= 4
