@@ -7,19 +7,20 @@
 
 import Foundation
 import FirebaseDatabase
+import FirebaseAuth
 import Combine
 
 class GameService {
     private var questions: [NewQuestion] = []
     var cancellable = Set<AnyCancellable>()
     
-    private func getFullyRandomQuestions() -> AnyPublisher<NewQuestion,Error>{
+    private func getFullyRandomQuestions(subjects: [Subject], diffs: [Difficulty]) -> AnyPublisher<NewQuestion,Error>{
         Deferred {
             Future { promise in
-                let difficulty = Difficulty.allCases.randomElement()
+                let difficulty = diffs.randomElement()
                 let ref = Database.database().reference()
                 ref
-                    .child("questions/\(Subject.allCases.randomElement()!.rawValue)/\(difficulty?.rawValue ?? "easy")")
+                    .child("questions/\(subjects.randomElement()?.rawValue ?? "biology")/\(difficulty?.rawValue ?? "easy")")
                     .getData(completion: { error, questionAnswer in
                         guard error == nil else {
                             promise(.failure(error!))
@@ -49,30 +50,59 @@ class GameService {
         Deferred {
             Future { [self] promise in
                 var questionsP: [NewQuestion] = []
-                if (subjects.count == Subject.allCases.count) {
-                    if (difficulties.count == Difficulty.allCases.count){
-                        for _ in 0..<10 {
-                            getFullyRandomQuestions().sink { error in
-                                print(error)
-                                if( questionsP.count == 10){
-                                    promise(.success(questionsP))
-                                }
-                            } receiveValue: { question in
-                                questionsP.append(question)
-                            }
-                            .store(in: &cancellable)
+                for _ in 0..<10 {
+                    getFullyRandomQuestions(subjects: subjects, diffs: difficulties)
+                        .sink { error in
+                        print(error)
+                        if( questionsP.count == 10){
+                            promise(.success(questionsP))
                         }
+                    } receiveValue: { question in
+                        questionsP.append(question)
                     }
+                    .store(in: &cancellable)
                 }
             }
         }
         .eraseToAnyPublisher()
     }
     
-    func checkAnswer(_ answer: NewAnswer) -> Bool {
-        if (answer.is_correct != ""){
-            return true
+    private func getUserPoints() -> AnyPublisher<Int,Error>{
+        Deferred {
+            Future { promise in
+                let userID = Auth.auth().currentUser!.uid
+                let ref = Database.database().reference()
+                ref.child("users/\(userID)")
+                    .getData { error, user in
+                        guard error == nil else {
+                            promise(.failure(error!))
+                            print(error!.localizedDescription)
+                            return;
+                        }
+                        let userInfo = user.value as? NSDictionary
+                        let usrPoints = userInfo?["points"] as? Int
+                        promise(.success(usrPoints!))
+                    }
+            }
         }
-        return false
+        .eraseToAnyPublisher()
+    }
+    
+    func sendPoints(_ gamePoints: Int) {
+        let userID = Auth.auth().currentUser!.uid
+        var userPoints = 0
+        getUserPoints()
+            .sink { res in
+                switch res {
+                case .finished:
+                    let ref = Database.database().reference()
+                    ref.child("users/\(userID)/points").setValue(userPoints+gamePoints)
+                case .failure(_):
+                    print(res)
+                }
+            } receiveValue: { pointsDB in
+                userPoints = pointsDB
+            }
+            .store(in: &cancellable)
     }
 }

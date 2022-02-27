@@ -9,7 +9,7 @@ import SwiftUI
 
 struct QuestionView: View {
     
-    @ObservedObject private var vm: NormalGameViewModel //= NormalGameViewModel(service: GameService())
+    @ObservedObject private var vm: NormalGameViewModel //= NormalGameViewModel(service: GameService())  
     @EnvironmentObject var sessionService: SessionServiceImpl
     
     init(vm: NormalGameViewModel){
@@ -18,24 +18,31 @@ struct QuestionView: View {
     
     var body: some View {
         VStack{
-            Text("Seconds")
-            if(sessionService.state == .loggedIn){
-                Text("logged")
-            }
-            Spacer()
-            
-            if (!vm.questions.isEmpty){
-                Text(vm.questions[vm.currentQuestion].question)
+            if(vm.currentQuestion == 10){
+                EndGameView().environmentObject(sessionService)
+            }else{
+                if(!vm.seconds.isEmpty){
+                    Text("\(vm.seconds[vm.currentQuestion])")
+                        .onReceive(vm.timer) { _ in
+                            vm.seconds[vm.currentQuestion] -= 1
+                            vm.checkSeconds()
+                        }
+                }
                 Spacer()
-                ForEach(vm.questions[vm.currentQuestion].answers, id: \.self) { answer in
-                    Button {
-                        print(vm.checkAnswer(answer))
-                    } label: {
-                        Text(answer.answer)
+                
+                if (!vm.questions.isEmpty){
+                    Text(vm.questions[vm.currentQuestion].question)
+                    Spacer()
+                    ForEach(vm.questions[vm.currentQuestion].answers, id: \.self) { answer in
+                        Button {
+                            print(vm.checkAnswer(answer))
+                        } label: {
+                            Text(answer.answer)
+                        }
                     }
                 }
+                Spacer()
             }
-            Spacer()
         }
     }
 }

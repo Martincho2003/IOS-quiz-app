@@ -32,6 +32,14 @@ final class SessionServiceImpl: ObservableObject, SessionService {
     private var handler: AuthStateDidChangeListenerHandle?
     
     init() {
+        setupFirebaseAuthHandler()
+    }
+    
+    func logout() {
+        try? Auth.auth().signOut()
+    }
+    
+    func setupFirebaseAuthHandler(){
         handler = Auth
             .auth()
             .addStateDidChangeListener({ res, user in
@@ -41,10 +49,6 @@ final class SessionServiceImpl: ObservableObject, SessionService {
                 }
                 self.statep.send(self.state)
             })
-    }
-    
-    func logout() {
-        try? Auth.auth().signOut()
     }
     
     func refreshDetails(with uid: String){
