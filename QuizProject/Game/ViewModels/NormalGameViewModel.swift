@@ -8,12 +8,14 @@
 import Foundation
 import FirebaseDatabase
 import Combine
+import SwiftUI
 
 
 
 
 final class NormalGameViewModel: ObservableObject {
     @Published var questions: [NewQuestion] = []
+    @ObservedObject private var sessionService: SessionServiceImpl
     private var cancellable = Set<AnyCancellable>()
     private var service: GameService
     @Published var currentQuestion: Int = 0
@@ -23,8 +25,9 @@ final class NormalGameViewModel: ObservableObject {
     @Published var isAddTime: [Bool] = []
     @Published var isExclude: [Bool] = []
     
-    init(service: GameService, subjects: [Subject], diffs: [Difficulty]){
+    init(service: GameService, sessionService: SessionServiceImpl, subjects: [Subject], diffs: [Difficulty]){
         self.service = service
+        self.sessionService = sessionService
         service.getQuestionsFromPub(difficulties: diffs, subjects: subjects)
             .sink { error in
             print(error)
@@ -84,5 +87,21 @@ final class NormalGameViewModel: ObservableObject {
         }
         points -= 4
         isExclude[currentQuestion].toggle()
+    }
+    
+    func isExcludeDeactivated() -> Bool {
+        if (sessionService.userDetails!.points + points < 4) {
+            return true
+        } else {
+            return isExclude[currentQuestion]
+        }
+    }
+    
+    func isAddTimeDeactivated() -> Bool {
+        if (sessionService.userDetails!.points + points < 2) {
+            return true
+        } else {
+            return isAddTime[currentQuestion]
+        }
     }
 }

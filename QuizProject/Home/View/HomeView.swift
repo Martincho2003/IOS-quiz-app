@@ -59,7 +59,7 @@ struct HomeView: View {
                 }
             }
         } else {
-            QuestionView(vm: NormalGameViewModel(service: GameService(), subjects: vm.sendSubjects(), diffs: vm.sendDiffs()))
+            QuestionView(vm: NormalGameViewModel(service: GameService(), sessionService: sessionService, subjects: vm.sendSubjects(), diffs: vm.sendDiffs()))
                 .environmentObject(sessionService)
         }
     }

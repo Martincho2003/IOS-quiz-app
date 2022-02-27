@@ -56,7 +56,7 @@ struct QuestionView: View {
                             .frame(width: 80, height: 80)
                             .foregroundColor(Color.white)
                             .background(Circle().fill(.blue))
-                            .disabled(vm.isAddTime[vm.currentQuestion])
+                            .disabled(vm.isAddTimeDeactivated())
                         
                         Spacer()
                         
@@ -71,7 +71,7 @@ struct QuestionView: View {
                             .frame(width: 80, height: 80)
                             .foregroundColor(Color.white)
                             .background(Circle().fill(.blue))
-                            .disabled(vm.isExclude[vm.currentQuestion])
+                            .disabled(vm.isExcludeDeactivated())
                     }
                 }
             }
@@ -81,6 +81,6 @@ struct QuestionView: View {
 
 struct QuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionView(vm: NormalGameViewModel(service: GameService(), subjects: [.biology], diffs: [.hard]))
+        QuestionView(vm: NormalGameViewModel(service: GameService(), sessionService: SessionServiceImpl(), subjects: [.biology], diffs: [.hard]))
     }
 }
