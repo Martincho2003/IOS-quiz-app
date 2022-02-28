@@ -128,6 +128,7 @@ class GameService {
                             }
                         } else {
                             ref.child("users/\(userID)").updateChildValues(["points": userInfo!.points + gamePoints,
+                                                                            "last_day_played": format.string(from: Date()),
                                                                             "played_games": 1])
                         }
                     }

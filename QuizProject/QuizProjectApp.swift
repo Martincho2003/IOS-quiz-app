@@ -21,7 +21,7 @@ struct QuizProjectApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var sessionService = SessionServiceImpl()
-    let coordinator: Coordinator = Coordinator()
+    //let coordinator: Coordinator = Coordinator()
     
     var body: some Scene {
         WindowGroup {

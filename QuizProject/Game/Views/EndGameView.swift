@@ -12,6 +12,7 @@ struct EndGameView: View {
     @EnvironmentObject var sessionService: SessionServiceImpl
     @State private var isHome = false
     private var points: Int
+    var service: GameService = GameService()
 
     init(points: Int){
         self.points = points
@@ -28,6 +29,7 @@ struct EndGameView: View {
                 Spacer()
                 Button {
                     print("going back")
+                    service.sendPoints(points)
                     isHome.toggle()
                 } label: {
                     Text("Go back")

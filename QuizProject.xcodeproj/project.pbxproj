@@ -15,6 +15,8 @@
 		0229A786278B5F4D00DE69CF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0229A785278B5F4D00DE69CF /* LoginView.swift */; };
 		0229A78C278B736300DE69CF /* InputTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0229A78B278B736300DE69CF /* InputTextFieldView.swift */; };
 		0229A790278B94C100DE69CF /* PasswordFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0229A78F278B94C100DE69CF /* PasswordFieldView.swift */; };
+		028055A927CC0AB900DBD48C /* LeadreboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028055A827CC0AB900DBD48C /* LeadreboardService.swift */; };
+		028055AB27CC146400DBD48C /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028055AA27CC146400DBD48C /* LeaderboardView.swift */; };
 		0298826827B83EF700B6E9ED /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298826727B83EF700B6E9ED /* LoginService.swift */; };
 		0298826A27B8437B00B6E9ED /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298826927B8437B00B6E9ED /* LoginViewModel.swift */; };
 		0298826F27BAEEB900B6E9ED /* ChooseDifficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298826E27BAEEB900B6E9ED /* ChooseDifficulty.swift */; };
@@ -50,6 +52,8 @@
 		0229A785278B5F4D00DE69CF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0229A78B278B736300DE69CF /* InputTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextFieldView.swift; sourceTree = "<group>"; };
 		0229A78F278B94C100DE69CF /* PasswordFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFieldView.swift; sourceTree = "<group>"; };
+		028055A827CC0AB900DBD48C /* LeadreboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadreboardService.swift; sourceTree = "<group>"; };
+		028055AA27CC146400DBD48C /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		0298826727B83EF700B6E9ED /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		0298826927B8437B00B6E9ED /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		0298826E27BAEEB900B6E9ED /* ChooseDifficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDifficulty.swift; sourceTree = "<group>"; };
@@ -168,6 +172,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		028055A727CC0A7300DBD48C /* HomeServices */ = {
+			isa = PBXGroup;
+			children = (
+				028055A827CC0AB900DBD48C /* LeadreboardService.swift */,
+			);
+			path = HomeServices;
+			sourceTree = "<group>";
+		};
 		0298826527B83EC700B6E9ED /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,6 +283,7 @@
 		02EE408D27989E240034B58B /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				028055A727CC0A7300DBD48C /* HomeServices */,
 				02DB962E27C651CC00238EDC /* ViewModel */,
 				02EE408E27989E2D0034B58B /* View */,
 			);
@@ -283,6 +296,7 @@
 				02EE408F27989E5C0034B58B /* HomeView.swift */,
 				0298826E27BAEEB900B6E9ED /* ChooseDifficulty.swift */,
 				02DB962C27C5863A00238EDC /* ChooseSubjects.swift */,
+				028055AA27CC146400DBD48C /* LeaderboardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -409,12 +423,14 @@
 				0298827C27C0309B00B6E9ED /* QuestionView.swift in Sources */,
 				02EE40A227A7244C0034B58B /* SessionService.swift in Sources */,
 				02DB962327C42EC000238EDC /* QuestionModel.swift in Sources */,
+				028055A927CC0AB900DBD48C /* LeadreboardService.swift in Sources */,
 				02DB963627C6C5D100238EDC /* DifficultyViewModel.swift in Sources */,
 				0229A790278B94C100DE69CF /* PasswordFieldView.swift in Sources */,
 				02DB963427C67E0700238EDC /* Subjects.swift in Sources */,
 				02DB962027C42CB500238EDC /* GameService.swift in Sources */,
 				02DB963027C651ED00238EDC /* HomeViewModel.swift in Sources */,
 				02DB962D27C5863A00238EDC /* ChooseSubjects.swift in Sources */,
+				028055AB27CC146400DBD48C /* LeaderboardView.swift in Sources */,
 				02DB962727C56BFA00238EDC /* Naviagator.swift in Sources */,
 				02DB962527C42F0300238EDC /* AnswerModel.swift in Sources */,
 				02DB963827C6CB7F00238EDC /* SubjectViewModel.swift in Sources */,

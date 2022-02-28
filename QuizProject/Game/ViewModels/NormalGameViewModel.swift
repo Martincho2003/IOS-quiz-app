@@ -54,17 +54,17 @@ final class NormalGameViewModel: ObservableObject {
                 points += 4
             }
         }
-        if (currentQuestion == 9) {
-            service.sendPoints(points)
-        }
+//        if (currentQuestion == 9) {
+//            service.sendPoints(points)
+//        }
         currentQuestion += 1
     }
     
     func checkSeconds() {
         if (seconds[currentQuestion] == 0) {
-            if (currentQuestion == 9) {
-                service.sendPoints(points)
-            }
+//            if (currentQuestion == 9) {
+//                service.sendPoints(points)
+//            }
             currentQuestion += 1
         }
     }

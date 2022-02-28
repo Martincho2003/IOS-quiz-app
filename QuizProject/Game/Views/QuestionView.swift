@@ -18,7 +18,7 @@ struct QuestionView: View {
     
     var body: some View {
         VStack{
-            if(vm.currentQuestion == 10){
+            if(vm.currentQuestion == vm.questions.count){
                 EndGameView(points: vm.points).environmentObject(sessionService)
             }else{
                 if(!vm.questions.isEmpty){

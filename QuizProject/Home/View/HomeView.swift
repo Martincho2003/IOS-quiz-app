@@ -33,12 +33,20 @@ struct HomeView: View {
                             .frame(width: 20)
                     }
                     Spacer()
+                        .frame(height: 50)
+                    LeaderboardView(users: vm.topUsers)
+                        .frame(height: 200)
+                        .border(.blue)
+                    Spacer()
+                        .frame(height: 150)
                     Button {
                         vm.showGameMode.toggle()
                         print(vm.showGameMode)
                     } label: {
                         Text("Single Player Game")
                     }
+                    Spacer()
+                        .frame(height: 50)
                     Button {
                     } label: {
                         Text("Multiplayer Game")
