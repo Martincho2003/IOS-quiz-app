@@ -46,6 +46,7 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
             .sink { [weak self] res in
                 switch res {
                 case .failure(let error):
+                    print(error)
                     self?.state = .failed(error: error)
                     self?.eror = error
                     self?.isError.toggle()

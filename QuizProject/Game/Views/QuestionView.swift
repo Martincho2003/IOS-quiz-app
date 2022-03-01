@@ -18,21 +18,22 @@ struct QuestionView: View {
     
     var body: some View {
         VStack{
-            if(vm.currentQuestion == 10){
-                EndGameView().environmentObject(sessionService)
+            if(vm.currentQuestion == vm.questions.count){
+                EndGameView(points: vm.points).environmentObject(sessionService)
             }else{
-                if(!vm.seconds.isEmpty){
+                if(!vm.questions.isEmpty){
                     Text("\(vm.seconds[vm.currentQuestion])")
                         .onReceive(vm.timer) { _ in
                             vm.seconds[vm.currentQuestion] -= 1
                             vm.checkSeconds()
                         }
-                }
-                Spacer()
-                
-                if (!vm.questions.isEmpty){
-                    Text(vm.questions[vm.currentQuestion].question)
+                    
                     Spacer()
+                
+                    Text(vm.questions[vm.currentQuestion].question)
+                    
+                    Spacer()
+                    
                     ForEach(vm.questions[vm.currentQuestion].answers, id: \.self) { answer in
                         Button {
                             print(vm.checkAnswer(answer))
@@ -40,8 +41,39 @@ struct QuestionView: View {
                             Text(answer.answer)
                         }
                     }
+                    
+                    Spacer()
+    
+                    HStack{
+                        Button {
+                            vm.addTime()
+                        } label: {
+                            VStack{
+                                Text("+20 sec")
+                                Text("-2 points")
+                            }
+                        }
+                            .frame(width: 80, height: 80)
+                            .foregroundColor(Color.white)
+                            .background(Circle().fill(.blue))
+                            .disabled(vm.isAddTimeDeactivated())
+                        
+                        Spacer()
+                        
+                        Button {
+                            vm.excludeAnswers()
+                        } label: {
+                            VStack{
+                                Text("50/50")
+                                Text("-4 points")
+                            }
+                        }
+                            .frame(width: 80, height: 80)
+                            .foregroundColor(Color.white)
+                            .background(Circle().fill(.blue))
+                            .disabled(vm.isExcludeDeactivated())
+                    }
                 }
-                Spacer()
             }
         }
     }
@@ -49,6 +81,6 @@ struct QuestionView: View {
 
 struct QuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionView(vm: NormalGameViewModel(service: GameService(), subjects: [.biology], diffs: [.hard]))
+        QuestionView(vm: NormalGameViewModel(service: GameService(), sessionService: SessionServiceImpl(), subjects: [.biology], diffs: [.hard]))
     }
 }

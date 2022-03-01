@@ -7,7 +7,9 @@
 
 import Foundation
 
-struct SessionUserDetails {
+struct SessionUserDetails: Hashable {
     let username: String
     var points: Int
+    var last_day_played: String
+    var played_games: Int
 }

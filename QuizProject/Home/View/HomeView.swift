@@ -12,13 +12,9 @@ struct HomeView: View {
     @ObservedObject private var vm: HomeViewModel = HomeViewModel()    
     @EnvironmentObject var sessionService: SessionServiceImpl
     
-    init(vm: HomeViewModel){
-        self.vm = vm
-    }
-    
     var body: some View {
         if(!vm.isGame){
-            if(!vm.showDifficulty){
+            if(!vm.showGameMode){
                 VStack(){
                     HStack(){
                         Spacer()
@@ -37,12 +33,20 @@ struct HomeView: View {
                             .frame(width: 20)
                     }
                     Spacer()
+                        .frame(height: 50)
+                    LeaderboardView(users: vm.topUsers)
+                        .frame(height: 200)
+                        .border(.blue)
+                    Spacer()
+                        .frame(height: 150)
                     Button {
-                        vm.showDifficulty.toggle()
-                        print(vm.showDifficulty)
+                        vm.showGameMode.toggle()
+                        print(vm.showGameMode)
                     } label: {
                         Text("Single Player Game")
                     }
+                    Spacer()
+                        .frame(height: 50)
                     Button {
                     } label: {
                         Text("Multiplayer Game")
@@ -63,7 +67,7 @@ struct HomeView: View {
                 }
             }
         } else {
-            QuestionView(vm: NormalGameViewModel(service: GameService(), subjects: vm.sendSubjects(), diffs: vm.sendDiffs()))
+            QuestionView(vm: NormalGameViewModel(service: GameService(), sessionService: sessionService, subjects: vm.sendSubjects(), diffs: vm.sendDiffs()))
                 .environmentObject(sessionService)
         }
     }
