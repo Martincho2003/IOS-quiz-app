@@ -40,7 +40,9 @@ struct LoginView: View {
                 RegisterView()
             }
             Spacer()
-                .frame(height: 100)
+                .frame(height: 30)
+            FacebookLoginView().frame(width: 180, height: 28).padding(15)
+            Spacer()
         }
         .padding(.horizontal, 15)
     }

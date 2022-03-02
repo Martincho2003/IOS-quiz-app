@@ -37,6 +37,10 @@ final class SessionServiceImpl: ObservableObject, SessionService {
         try? Auth.auth().signOut()
     }
     
+    func getUserProvider() -> String{
+        return Auth.auth().currentUser?.providerData[0].providerID as? String ?? ""
+    }
+    
     func setupFirebaseAuthHandler(){
         handler = Auth
             .auth()
