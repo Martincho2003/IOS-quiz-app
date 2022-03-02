@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		020B673A27CEC4CB00D75152 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 020B673927CEC4CB00D75152 /* FacebookCore */; };
 		020B673C27CEC4CB00D75152 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 020B673B27CEC4CB00D75152 /* FacebookLogin */; };
+		020B674227CFEFD300D75152 /* AppleLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020B674127CFEFD300D75152 /* AppleLoginView.swift */; };
+		020B674427D0088500D75152 /* AppleLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020B674327D0088500D75152 /* AppleLoginViewModel.swift */; };
 		0229A76D2773270200DE69CF /* QuizProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0229A76C2773270200DE69CF /* QuizProjectApp.swift */; };
 		0229A7712773270A00DE69CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0229A7702773270A00DE69CF /* Assets.xcassets */; };
 		0229A7742773270A00DE69CF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0229A7732773270A00DE69CF /* Preview Assets.xcassets */; };
@@ -48,6 +50,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		020B673D27CFC3D300D75152 /* QuizProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuizProject.entitlements; sourceTree = "<group>"; };
+		020B674127CFEFD300D75152 /* AppleLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginView.swift; sourceTree = "<group>"; };
+		020B674327D0088500D75152 /* AppleLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginViewModel.swift; sourceTree = "<group>"; };
 		0229A7692773270200DE69CF /* QuizProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0229A76C2773270200DE69CF /* QuizProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizProjectApp.swift; sourceTree = "<group>"; };
 		0229A7702773270A00DE69CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -101,6 +106,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		020B673E27CFEC7800D75152 /* AuthProviders */ = {
+			isa = PBXGroup;
+			children = (
+				020B674527D00DFF00D75152 /* ViewModel */,
+				020B673F27CFEC8700D75152 /* Views */,
+			);
+			path = AuthProviders;
+			sourceTree = "<group>";
+		};
+		020B673F27CFEC8700D75152 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				028055AE27CE960E00DBD48C /* FacebookLoginView.swift */,
+				020B674127CFEFD300D75152 /* AppleLoginView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		020B674527D00DFF00D75152 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				020B674327D0088500D75152 /* AppleLoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		0229A7602773270200DE69CF = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +151,8 @@
 		0229A76B2773270200DE69CF /* QuizProject */ = {
 			isa = PBXGroup;
 			children = (
+				020B673E27CFEC7800D75152 /* AuthProviders */,
+				020B673D27CFC3D300D75152 /* QuizProject.entitlements */,
 				0298827927C0306D00B6E9ED /* Game */,
 				0298827027BC38D800B6E9ED /* Extensions */,
 				02EE409C27A722040034B58B /* Session */,
@@ -158,7 +191,6 @@
 			isa = PBXGroup;
 			children = (
 				0229A785278B5F4D00DE69CF /* LoginView.swift */,
-				028055AE27CE960E00DBD48C /* FacebookLoginView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -447,12 +479,14 @@
 				02DB962527C42F0300238EDC /* AnswerModel.swift in Sources */,
 				02DB963827C6CB7F00238EDC /* SubjectViewModel.swift in Sources */,
 				02DB963227C67DE700238EDC /* Dificulties.swift in Sources */,
+				020B674427D0088500D75152 /* AppleLoginViewModel.swift in Sources */,
 				028055AF27CE960E00DBD48C /* FacebookLoginView.swift in Sources */,
 				02EE409027989E5C0034B58B /* HomeView.swift in Sources */,
 				02EE408927960D4B0034B58B /* RegisterView.swift in Sources */,
 				02EE409F27A7224D0034B58B /* SessionUserDetails.swift in Sources */,
 				02EE408B27960D5B0034B58B /* ButtonView.swift in Sources */,
 				02EE40962799F6580034B58B /* RegistrationService.swift in Sources */,
+				020B674227CFEFD300D75152 /* AppleLoginView.swift in Sources */,
 				0298826827B83EF700B6E9ED /* LoginService.swift in Sources */,
 				0298826A27B8437B00B6E9ED /* LoginViewModel.swift in Sources */,
 				02DB963C27C9432500238EDC /* EndGameView.swift in Sources */,
@@ -590,6 +624,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QuizProject/QuizProject.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"QuizProject/Preview Content\"";
@@ -622,6 +657,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QuizProject/QuizProject.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"QuizProject/Preview Content\"";

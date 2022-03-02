@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Firebase
+import AuthenticationServices
 
 struct LoginView: View {
     
@@ -41,8 +41,13 @@ struct LoginView: View {
             }
             Spacer()
                 .frame(height: 30)
-            FacebookLoginView().frame(width: 180, height: 28).padding(15)
-            Spacer()
+            VStack{
+                Spacer()
+                FacebookLoginView().frame(width: 180, height: 28).padding(15)
+                
+                AppleLoginView()
+                Spacer()
+            }
         }
         .padding(.horizontal, 15)
     }

@@ -38,7 +38,7 @@ final class SessionServiceImpl: ObservableObject, SessionService {
     }
     
     func getUserProvider() -> String{
-        return Auth.auth().currentUser?.providerData[0].providerID as? String ?? ""
+        return Auth.auth().currentUser?.providerData[0].providerID ?? ""
     }
     
     func setupFirebaseAuthHandler(){
