@@ -13,4 +13,5 @@ struct Room: Hashable {
     var difficutlies: [String]
     var users: [SessionUserDetails]
     var questions: [NewQuestion]
+    var is_game_started: String
 }

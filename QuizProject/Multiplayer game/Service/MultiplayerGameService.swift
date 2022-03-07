@@ -18,7 +18,9 @@ class MultiplayerGameService {
         return [
             "username": user.username,
             "room_points": 0,
-            "points": user.points]
+            "points": user.points,
+            "last_day_played": user.last_day_played,
+            "played_games": user.played_games]
         
     }
     
@@ -58,101 +60,67 @@ class MultiplayerGameService {
         return questionsArrDict
     }
     
-    func createRoom(subjects: [Subject], diffs: [Difficulty]) {
-        var userInfo: SessionUserDetails = SessionUserDetails(username: "", points: -1, last_day_played: "", played_games: -1)
-        var questions: [NewQuestion] = []
-        gameService.getQuestionsFromPub(difficulties: diffs, subjects: subjects)
-            .sink { [self] res in
-                switch res {
-                case .finished :
-                    gameService.getUserDetails()
-                        .sink { res in
-                            switch res {
-                            case .finished :
-                                
-                                let room = Room(admin: userInfo, subjects: subjectsToString(subjects), difficutlies: difficultiesToString(diffs), users: [userInfo], questions: questions)
-                                Database.database().reference()
-                                    .child("rooms")
-                                    .child(userInfo.username)
-                                    .setValue(["admin" : userToDictionary(user: userInfo),
-                                               "users" : [userToDictionary(user: userInfo)],
-                                               "subjects" : room.subjects,
-                                               "difficulties" : room.difficutlies,
-                                               "questions" : questionsToDictionary(room.questions)])
-                            case .failure(_) :
-                                print(res)
-                            }
-                        } receiveValue: { userDetails in
-                            userInfo = userDetails
+    func createRoom(subjects: [Subject], diffs: [Difficulty]) -> AnyPublisher<Room,Error> {
+        Deferred {
+            Future { [self] promise in
+                var userInfo: SessionUserDetails = SessionUserDetails(username: "", points: -1, last_day_played: "", played_games: -1)
+                var questions: [NewQuestion] = []
+                gameService.getQuestionsFromPub(difficulties: diffs, subjects: subjects)
+                    .sink { [self] res in
+                        switch res {
+                        case .finished :
+                            gameService.getUserDetails()
+                                .sink { userRes in
+                                    switch userRes {
+                                    case .finished :
+                                        let room = Room(admin: userInfo, subjects: subjectsToString(subjects), difficutlies: difficultiesToString(diffs), users: [userInfo], questions: questions, is_game_started: "no")
+                                        Database.database().reference()
+                                            .child("rooms")
+                                            .child(userInfo.username)
+                                            .setValue(["admin" : userToDictionary(user: userInfo),
+                                                       "users" : [userToDictionary(user: userInfo)],
+                                                       "subjects" : room.subjects,
+                                                       "difficulties" : room.difficutlies,
+                                                       "questions" : questionsToDictionary(room.questions),
+                                                       "is_game_started": room.is_game_started])
+                                        promise(.success(room))
+                                    case .failure(_) :
+                                        print(userRes)
+                                    }
+                                } receiveValue: { userDetails in
+                                    userInfo = userDetails
+                                }
+                                .store(in: &subscriptions)
+                        case .failure :
+                            print(res)
                         }
-                        .store(in: &subscriptions)
-                case .failure :
-                    print(res)
-                }
-            } receiveValue: { quests in
-                questions.append(contentsOf: quests)
-                print(questions)
+                    } receiveValue: { quests in
+                        questions.append(contentsOf: quests)
+                    }
+                    .store(in: &subscriptions)
             }
-            .store(in: &subscriptions)
+        }
+        .eraseToAnyPublisher()
     }
     
-//    private func getQuestionIndexes(subjects: [Subject], diffs: [Difficulty]) -> AnyPublisher<[String], Error> {
-//        Deferred {
-//            Future { promise in
-//                var questions: [String] = []
-//                let difficulty = diffs.randomElement()
-//                let ref = Database.database().reference()
-//                ref
-//                    .child("questions/\(subjects.randomElement()?.rawValue ?? "biology")/\(difficulty?.rawValue ?? "easy")")
-//                    .getData(completion: { error, questionAnswer in
-//                        guard error == nil else {
-//                            promise(.failure(error!))
-//                            print(error!.localizedDescription)
-//                            return;
-//                        }
-//                        let value = questionAnswer.value as? [[String:Any]]
-//                        let questionNumber = (value?.count ?? 10) as Int
-//                        let randQuestion = Int.random(in: 0..<questionNumber)
-//                        let question = value?[randQuestion]
-//                        var newQuestion = NewQuestion(question: "", answers: [], difficulty: difficulty ?? .easy)
-//                        newQuestion.question = question?["question"] as? String ?? "no question"
-//                        let answersArray = question?["answers"] as? [[String:String]] ?? []
-//
-//                        for answer in answersArray {
-//                            let newAnswer = NewAnswer(answer: answer["answer"] ?? "", is_correct: answer["is_correct"] ?? "")
-//                            newQuestion.answers.append(newAnswer)
-//                        }
-//                        promise(.success(newQuestion))
-//                    })
-//            }
-//        }
-//    }
-//
-////    func getRoom(admin: String) -> AnyPublisher<Room, Error> {
-////        Deferred {
-////            Future { promise in
-////                Database.database().reference()
-////                    .child("rooms/\(admin)")
-////                    .observe(.value) { snapshot in
-////                        let value = snapshot?.value as [String:Any]
-////                        let
-////                    }
-////            }
-////        }
-////    }
-//    private func SubjectToString(subjects: [Subject]) -> [String] {
-//        var strings: [String] = []
-//        for subject in subjects {
-//            strings.append(subject.title)
-//        }
-//        return strings
-//    }
-//
-//    private func DifficultyToString(diffs: [Difficulty]) -> [String] {
-//        var strings: [String] = []
-//        for diff in diffs {
-//            strings.append(diff.value)
-//        }
-//        return strings
-//    }
+    func getRoom(admin: String) -> AnyPublisher<Room, Error> {
+        Deferred {
+            Future { promise in
+                Database.database().reference().child("rooms/\(admin)")
+                    .getData { error, snapshot in
+                        guard error == nil else {
+                            promise(.failure(error!))
+                            print(error!.localizedDescription)
+                            return;
+                        }
+                        let value = snapshot.value as? [String:Any]
+                        let admin = value?["admin"] as? SessionUserDetails
+                        print(admin)
+//                        let room = Room(admin: <#T##SessionUserDetails#>, subjects: <#T##[String]#>, difficutlies: <#T##[String]#>, users: <#T##[SessionUserDetails]#>, questions: <#T##[NewQuestion]#>, is_game_started: <#T##String#>)
+//                        promise(.success(room))
+                    }
+            }
+        }
+        .eraseToAnyPublisher()
+    }
 }

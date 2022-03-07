@@ -91,22 +91,6 @@ class GameService {
         .eraseToAnyPublisher()
     }
     
-//    func getPoints() -> Int{
-//        var userInfo: SessionUserDetails? = nil
-//        getUserDetails()
-//            .sink { res in
-//                switch res {
-//                case .finished:
-//                    return userInfo!.points
-//                case .failure(_):
-//                    print(res)
-//                }
-//            } receiveValue: { details in
-//                userInfo = details
-//            }
-//            .store(in: &cancellable)
-//    }
-    
     func sendPoints(_ gamePoints: Int) {
         let userID = Auth.auth().currentUser!.uid
         var userInfo: SessionUserDetails? = nil

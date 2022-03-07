@@ -6,19 +6,30 @@
 //
 
 import Foundation
+import Combine
 
 class GameRoomViewModel: ObservableObject {
     var asCreator: Bool
+    var subscriptions = Set<AnyCancellable>()
     private var multiplayerService = MultiplayerGameService()
-    @Published var room: Room = Room(admin: SessionUserDetails(username: "", points: -1, last_day_played: "", played_games: -1), subjects: [], difficutlies: [], users: [], questions: [])
+    @Published var room: Room = Room(admin: SessionUserDetails(username: "", points: -1, last_day_played: "", played_games: -1), subjects: [], difficutlies: [], users: [], questions: [], is_game_started: "no")
     
     init(asCreator: Bool, subjects: [Subject], diffs: [Difficulty]) {
         self.asCreator = asCreator
         if (asCreator){
             multiplayerService.createRoom(subjects: subjects, diffs: diffs)
+                .sink { res in
+                    switch res {
+                    case .failure(_):
+                        print("error")
+                    default: break
+                    }
+                } receiveValue: { [self] getRoom in
+                    room = getRoom
+                }
+                .store(in: &subscriptions)
         } else {
             //multiplayerService.joinRoom()
         }
-        //room = multiplayerService.getRoom()
     }
 }
