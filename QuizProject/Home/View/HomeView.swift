@@ -25,8 +25,13 @@ struct HomeView: View {
                         VStack(){
                             Text("\(sessionService.userDetails?.username ?? "N/A")")
                             Text("\(sessionService.userDetails?.points ?? -1) points")
-                            Button(action: sessionService.logout) {
-                                Text("Logout")
+                            if (sessionService.getUserProvider() == "facebook.com"){
+                                FacebookLoginView().frame(width: 10, height: 8)
+                                    
+                            } else {
+                                Button(action: sessionService.logout) {
+                                    Text("Logout")
+                                }
                             }
                         }
                         Spacer()
@@ -75,7 +80,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView().environmentObject(SessionServiceImpl())
         //HomeView(vm: HomeViewModel(sessionService: SessionServiceImpl()))
     }
 }

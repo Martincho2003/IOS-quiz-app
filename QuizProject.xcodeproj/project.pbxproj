@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		020B673A27CEC4CB00D75152 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 020B673927CEC4CB00D75152 /* FacebookCore */; };
+		020B673C27CEC4CB00D75152 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 020B673B27CEC4CB00D75152 /* FacebookLogin */; };
+		020B674227CFEFD300D75152 /* AppleLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020B674127CFEFD300D75152 /* AppleLoginView.swift */; };
+		020B674427D0088500D75152 /* AppleLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020B674327D0088500D75152 /* AppleLoginViewModel.swift */; };
 		0229A76D2773270200DE69CF /* QuizProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0229A76C2773270200DE69CF /* QuizProjectApp.swift */; };
 		0229A7712773270A00DE69CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0229A7702773270A00DE69CF /* Assets.xcassets */; };
 		0229A7742773270A00DE69CF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0229A7732773270A00DE69CF /* Preview Assets.xcassets */; };
@@ -17,6 +21,7 @@
 		0229A790278B94C100DE69CF /* PasswordFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0229A78F278B94C100DE69CF /* PasswordFieldView.swift */; };
 		028055A927CC0AB900DBD48C /* LeadreboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028055A827CC0AB900DBD48C /* LeadreboardService.swift */; };
 		028055AB27CC146400DBD48C /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028055AA27CC146400DBD48C /* LeaderboardView.swift */; };
+		028055AF27CE960E00DBD48C /* FacebookLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028055AE27CE960E00DBD48C /* FacebookLoginView.swift */; };
 		0298826827B83EF700B6E9ED /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298826727B83EF700B6E9ED /* LoginService.swift */; };
 		0298826A27B8437B00B6E9ED /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298826927B8437B00B6E9ED /* LoginViewModel.swift */; };
 		0298826F27BAEEB900B6E9ED /* ChooseDifficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298826E27BAEEB900B6E9ED /* ChooseDifficulty.swift */; };
@@ -45,6 +50,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		020B673D27CFC3D300D75152 /* QuizProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuizProject.entitlements; sourceTree = "<group>"; };
+		020B674127CFEFD300D75152 /* AppleLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginView.swift; sourceTree = "<group>"; };
+		020B674327D0088500D75152 /* AppleLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginViewModel.swift; sourceTree = "<group>"; };
 		0229A7692773270200DE69CF /* QuizProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0229A76C2773270200DE69CF /* QuizProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizProjectApp.swift; sourceTree = "<group>"; };
 		0229A7702773270A00DE69CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,6 +62,8 @@
 		0229A78F278B94C100DE69CF /* PasswordFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFieldView.swift; sourceTree = "<group>"; };
 		028055A827CC0AB900DBD48C /* LeadreboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadreboardService.swift; sourceTree = "<group>"; };
 		028055AA27CC146400DBD48C /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
+		028055AC27CE875D00DBD48C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		028055AE27CE960E00DBD48C /* FacebookLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookLoginView.swift; sourceTree = "<group>"; };
 		0298826727B83EF700B6E9ED /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		0298826927B8437B00B6E9ED /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		0298826E27BAEEB900B6E9ED /* ChooseDifficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDifficulty.swift; sourceTree = "<group>"; };
@@ -86,7 +96,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				020B673C27CEC4CB00D75152 /* FacebookLogin in Frameworks */,
 				0229A77E27732A1200DE69CF /* FirebaseDatabase in Frameworks */,
+				020B673A27CEC4CB00D75152 /* FacebookCore in Frameworks */,
 				0229A77C27732A1200DE69CF /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,6 +106,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		020B673E27CFEC7800D75152 /* AuthProviders */ = {
+			isa = PBXGroup;
+			children = (
+				020B674527D00DFF00D75152 /* ViewModel */,
+				020B673F27CFEC8700D75152 /* Views */,
+			);
+			path = AuthProviders;
+			sourceTree = "<group>";
+		};
+		020B673F27CFEC8700D75152 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				028055AE27CE960E00DBD48C /* FacebookLoginView.swift */,
+				020B674127CFEFD300D75152 /* AppleLoginView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		020B674527D00DFF00D75152 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				020B674327D0088500D75152 /* AppleLoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		0229A7602773270200DE69CF = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +151,8 @@
 		0229A76B2773270200DE69CF /* QuizProject */ = {
 			isa = PBXGroup;
 			children = (
+				020B673E27CFEC7800D75152 /* AuthProviders */,
+				020B673D27CFC3D300D75152 /* QuizProject.entitlements */,
 				0298827927C0306D00B6E9ED /* Game */,
 				0298827027BC38D800B6E9ED /* Extensions */,
 				02EE409C27A722040034B58B /* Session */,
@@ -124,6 +164,7 @@
 				0229A76C2773270200DE69CF /* QuizProjectApp.swift */,
 				0229A7702773270A00DE69CF /* Assets.xcassets */,
 				0229A7722773270A00DE69CF /* Preview Content */,
+				028055AC27CE875D00DBD48C /* Info.plist */,
 			);
 			path = QuizProject;
 			sourceTree = "<group>";
@@ -361,6 +402,8 @@
 			packageProductDependencies = (
 				0229A77B27732A1200DE69CF /* FirebaseAuth */,
 				0229A77D27732A1200DE69CF /* FirebaseDatabase */,
+				020B673927CEC4CB00D75152 /* FacebookCore */,
+				020B673B27CEC4CB00D75152 /* FacebookLogin */,
 			);
 			productName = QuizProject;
 			productReference = 0229A7692773270200DE69CF /* QuizProject.app */;
@@ -392,6 +435,7 @@
 			mainGroup = 0229A7602773270200DE69CF;
 			packageReferences = (
 				0229A77A27732A1100DE69CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				020B673827CEC4CB00D75152 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = 0229A76A2773270200DE69CF /* Products */;
 			projectDirPath = "";
@@ -435,11 +479,14 @@
 				02DB962527C42F0300238EDC /* AnswerModel.swift in Sources */,
 				02DB963827C6CB7F00238EDC /* SubjectViewModel.swift in Sources */,
 				02DB963227C67DE700238EDC /* Dificulties.swift in Sources */,
+				020B674427D0088500D75152 /* AppleLoginViewModel.swift in Sources */,
+				028055AF27CE960E00DBD48C /* FacebookLoginView.swift in Sources */,
 				02EE409027989E5C0034B58B /* HomeView.swift in Sources */,
 				02EE408927960D4B0034B58B /* RegisterView.swift in Sources */,
 				02EE409F27A7224D0034B58B /* SessionUserDetails.swift in Sources */,
 				02EE408B27960D5B0034B58B /* ButtonView.swift in Sources */,
 				02EE40962799F6580034B58B /* RegistrationService.swift in Sources */,
+				020B674227CFEFD300D75152 /* AppleLoginView.swift in Sources */,
 				0298826827B83EF700B6E9ED /* LoginService.swift in Sources */,
 				0298826A27B8437B00B6E9ED /* LoginViewModel.swift in Sources */,
 				02DB963C27C9432500238EDC /* EndGameView.swift in Sources */,
@@ -577,11 +624,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QuizProject/QuizProject.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"QuizProject/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "/Users/martindinev/Projects/IOS-quiz-app/QuizProject/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "/Users/martindinev/Projects/IOS-quiz-app/QuizProject/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -607,11 +657,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QuizProject/QuizProject.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"QuizProject/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "/Users/martindinev/Projects/IOS-quiz-app/QuizProject/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "/Users/martindinev/Projects/IOS-quiz-app/QuizProject/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -656,6 +709,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		020B673827CEC4CB00D75152 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 		0229A77A27732A1100DE69CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -667,6 +728,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		020B673927CEC4CB00D75152 /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 020B673827CEC4CB00D75152 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		020B673B27CEC4CB00D75152 /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 020B673827CEC4CB00D75152 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
 		0229A77B27732A1200DE69CF /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0229A77A27732A1100DE69CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

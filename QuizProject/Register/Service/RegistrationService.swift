@@ -49,4 +49,24 @@ class RegistrationService{
         .receive(on: RunLoop.main)
         .eraseToAnyPublisher()
     }
+    
+    func isUserExist(uid: String) -> AnyPublisher<Bool, Error> {
+        Deferred {
+            Future {
+                promise in
+                
+                Database.database().reference()
+                    .child("users")
+                    .child("uid")
+                    .observe(.value) { snapshot in
+                        if (snapshot.value == nil) {
+                            promise(.success(false))
+                        }
+                        promise(.success(true))
+                    }
+            }
+        }
+        .receive(on: RunLoop.main)
+        .eraseToAnyPublisher()
+    }
 }
