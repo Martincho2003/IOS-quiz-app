@@ -52,10 +52,7 @@ struct HomeView: View {
                     }
                     Spacer()
                         .frame(height: 50)
-                    Button {
-                    } label: {
-                        Text("Multiplayer Game")
-                    }
+                    NavigationLink("MultiPlayer Game", destination: MultiplayerHomeView())
                     Spacer()
                 }
             } else {

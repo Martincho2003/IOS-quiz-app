@@ -11,6 +11,14 @@
 		020B673C27CEC4CB00D75152 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 020B673B27CEC4CB00D75152 /* FacebookLogin */; };
 		020B674227CFEFD300D75152 /* AppleLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020B674127CFEFD300D75152 /* AppleLoginView.swift */; };
 		020B674427D0088500D75152 /* AppleLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020B674327D0088500D75152 /* AppleLoginViewModel.swift */; };
+		020B674927D26D9700D75152 /* MultiplayerHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020B674827D26D9700D75152 /* MultiplayerHomeView.swift */; };
+		020B674B27D26DF300D75152 /* MultiplayerGameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020B674A27D26DF300D75152 /* MultiplayerGameService.swift */; };
+		020B674D27D274F400D75152 /* MultiplayerHomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020B674C27D274F400D75152 /* MultiplayerHomeVM.swift */; };
+		020B675327D27A6000D75152 /* ChooseRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020B675227D27A6000D75152 /* ChooseRoomView.swift */; };
+		020B675527D27B9900D75152 /* GameRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020B675427D27B9900D75152 /* GameRoomView.swift */; };
+		020B675727D27BDB00D75152 /* GameRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020B675627D27BDB00D75152 /* GameRoomViewModel.swift */; };
+		020B675A27D2AC5D00D75152 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020B675927D2AC5D00D75152 /* Room.swift */; };
+		020B675C27D2B06200D75152 /* ChooseRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020B675B27D2B06200D75152 /* ChooseRoomViewModel.swift */; };
 		0229A76D2773270200DE69CF /* QuizProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0229A76C2773270200DE69CF /* QuizProjectApp.swift */; };
 		0229A7712773270A00DE69CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0229A7702773270A00DE69CF /* Assets.xcassets */; };
 		0229A7742773270A00DE69CF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0229A7732773270A00DE69CF /* Preview Assets.xcassets */; };
@@ -53,6 +61,14 @@
 		020B673D27CFC3D300D75152 /* QuizProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuizProject.entitlements; sourceTree = "<group>"; };
 		020B674127CFEFD300D75152 /* AppleLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginView.swift; sourceTree = "<group>"; };
 		020B674327D0088500D75152 /* AppleLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginViewModel.swift; sourceTree = "<group>"; };
+		020B674827D26D9700D75152 /* MultiplayerHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerHomeView.swift; sourceTree = "<group>"; };
+		020B674A27D26DF300D75152 /* MultiplayerGameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerGameService.swift; sourceTree = "<group>"; };
+		020B674C27D274F400D75152 /* MultiplayerHomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerHomeVM.swift; sourceTree = "<group>"; };
+		020B675227D27A6000D75152 /* ChooseRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRoomView.swift; sourceTree = "<group>"; };
+		020B675427D27B9900D75152 /* GameRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomView.swift; sourceTree = "<group>"; };
+		020B675627D27BDB00D75152 /* GameRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomViewModel.swift; sourceTree = "<group>"; };
+		020B675927D2AC5D00D75152 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		020B675B27D2B06200D75152 /* ChooseRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRoomViewModel.swift; sourceTree = "<group>"; };
 		0229A7692773270200DE69CF /* QuizProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0229A76C2773270200DE69CF /* QuizProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizProjectApp.swift; sourceTree = "<group>"; };
 		0229A7702773270A00DE69CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -132,6 +148,53 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		020B674E27D2783900D75152 /* Multiplayer game */ = {
+			isa = PBXGroup;
+			children = (
+				020B675827D2AC3B00D75152 /* Models */,
+				020B675127D2786A00D75152 /* Service */,
+				020B675027D2784E00D75152 /* ViewModels */,
+				020B674F27D2784800D75152 /* Views */,
+			);
+			path = "Multiplayer game";
+			sourceTree = "<group>";
+		};
+		020B674F27D2784800D75152 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				020B674827D26D9700D75152 /* MultiplayerHomeView.swift */,
+				020B675227D27A6000D75152 /* ChooseRoomView.swift */,
+				020B675427D27B9900D75152 /* GameRoomView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		020B675027D2784E00D75152 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				020B674C27D274F400D75152 /* MultiplayerHomeVM.swift */,
+				020B675627D27BDB00D75152 /* GameRoomViewModel.swift */,
+				020B675B27D2B06200D75152 /* ChooseRoomViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		020B675127D2786A00D75152 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				020B674A27D26DF300D75152 /* MultiplayerGameService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		020B675827D2AC3B00D75152 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				020B675927D2AC5D00D75152 /* Room.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		0229A7602773270200DE69CF = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +214,7 @@
 		0229A76B2773270200DE69CF /* QuizProject */ = {
 			isa = PBXGroup;
 			children = (
+				020B674E27D2783900D75152 /* Multiplayer game */,
 				020B673E27CFEC7800D75152 /* AuthProviders */,
 				020B673D27CFC3D300D75152 /* QuizProject.entitlements */,
 				0298827927C0306D00B6E9ED /* Game */,
@@ -465,11 +529,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0298827C27C0309B00B6E9ED /* QuestionView.swift in Sources */,
+				020B675527D27B9900D75152 /* GameRoomView.swift in Sources */,
 				02EE40A227A7244C0034B58B /* SessionService.swift in Sources */,
 				02DB962327C42EC000238EDC /* QuestionModel.swift in Sources */,
+				020B675C27D2B06200D75152 /* ChooseRoomViewModel.swift in Sources */,
 				028055A927CC0AB900DBD48C /* LeadreboardService.swift in Sources */,
 				02DB963627C6C5D100238EDC /* DifficultyViewModel.swift in Sources */,
 				0229A790278B94C100DE69CF /* PasswordFieldView.swift in Sources */,
+				020B675327D27A6000D75152 /* ChooseRoomView.swift in Sources */,
 				02DB963427C67E0700238EDC /* Subjects.swift in Sources */,
 				02DB962027C42CB500238EDC /* GameService.swift in Sources */,
 				02DB963027C651ED00238EDC /* HomeViewModel.swift in Sources */,
@@ -479,6 +546,8 @@
 				02DB962527C42F0300238EDC /* AnswerModel.swift in Sources */,
 				02DB963827C6CB7F00238EDC /* SubjectViewModel.swift in Sources */,
 				02DB963227C67DE700238EDC /* Dificulties.swift in Sources */,
+				020B675727D27BDB00D75152 /* GameRoomViewModel.swift in Sources */,
+				020B674927D26D9700D75152 /* MultiplayerHomeView.swift in Sources */,
 				020B674427D0088500D75152 /* AppleLoginViewModel.swift in Sources */,
 				028055AF27CE960E00DBD48C /* FacebookLoginView.swift in Sources */,
 				02EE409027989E5C0034B58B /* HomeView.swift in Sources */,
@@ -486,12 +555,15 @@
 				02EE409F27A7224D0034B58B /* SessionUserDetails.swift in Sources */,
 				02EE408B27960D5B0034B58B /* ButtonView.swift in Sources */,
 				02EE40962799F6580034B58B /* RegistrationService.swift in Sources */,
+				020B674B27D26DF300D75152 /* MultiplayerGameService.swift in Sources */,
 				020B674227CFEFD300D75152 /* AppleLoginView.swift in Sources */,
 				0298826827B83EF700B6E9ED /* LoginService.swift in Sources */,
 				0298826A27B8437B00B6E9ED /* LoginViewModel.swift in Sources */,
 				02DB963C27C9432500238EDC /* EndGameView.swift in Sources */,
 				0298826F27BAEEB900B6E9ED /* ChooseDifficulty.swift in Sources */,
+				020B674D27D274F400D75152 /* MultiplayerHomeVM.swift in Sources */,
 				02EE4098279A0FA70034B58B /* RegistrationViewModel.swift in Sources */,
+				020B675A27D2AC5D00D75152 /* Room.swift in Sources */,
 				0229A786278B5F4D00DE69CF /* LoginView.swift in Sources */,
 				0298827227BC390500B6E9ED /* StringValidator.swift in Sources */,
 				0229A78C278B736300DE69CF /* InputTextFieldView.swift in Sources */,

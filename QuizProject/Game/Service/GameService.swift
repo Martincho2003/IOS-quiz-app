@@ -67,7 +67,7 @@ class GameService {
         .eraseToAnyPublisher()
     }
     
-    private func getUserDetails() -> AnyPublisher<SessionUserDetails,Error>{
+    func getUserDetails() -> AnyPublisher<SessionUserDetails,Error>{
         Deferred {
             Future { promise in
                 let userID = Auth.auth().currentUser!.uid
