@@ -43,6 +43,6 @@ struct GameRoomView: View {
 
 struct GameRoomView_Previews: PreviewProvider {
     static var previews: some View {
-        GameRoomView(vm: GameRoomViewModel(asCreator: false, subjects: [], diffs: []))
+        GameRoomView(vm: GameRoomViewModel(asCreator: false, subjects: [], diffs: [], roomName: ""))
     }
 }

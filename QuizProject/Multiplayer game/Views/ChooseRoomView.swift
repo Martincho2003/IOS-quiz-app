@@ -14,7 +14,7 @@ struct ChooseRoomView: View {
     var body: some View {
         if(!vm.rooms.isEmpty){
             ForEach(vm.rooms, id: \.self) { room in
-                NavigationLink("\(room.admin.username)'s room", destination: GameRoomView(vm: GameRoomViewModel(asCreator: false, subjects: [], diffs: [])))
+                NavigationLink("\(room.admin.username)'s room", destination: GameRoomView(vm: GameRoomViewModel(asCreator: false, subjects: [], diffs: [], roomName: room.admin.username)))
             }
         }
     }

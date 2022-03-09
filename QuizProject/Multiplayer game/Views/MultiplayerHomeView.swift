@@ -26,6 +26,9 @@ struct MultiplayerHomeView: View {
                     Text("Create Room")
                 }
                 NavigationLink("Join Room", destination: ChooseRoomView())
+                    .simultaneousGesture(TapGesture().onEnded({ _ in
+                        vm.timer.upstream.connect().cancel()
+                    }))
             } else {
                 VStack{
                     ScrollView{
@@ -35,7 +38,7 @@ struct MultiplayerHomeView: View {
                         ChooseSubjects(vm: vm.subVM)
                     }
                     if(vm.isCreateActive){
-                        NavigationLink("Create", destination: GameRoomView(vm: GameRoomViewModel(asCreator: true, subjects: vm.sendSubjects(), diffs: vm.sendDiffs())))
+                        NavigationLink("Create", destination: GameRoomView(vm: GameRoomViewModel(asCreator: true, subjects: vm.sendSubjects(), diffs: vm.sendDiffs(), roomName: "")))
                     }
                 }
             }

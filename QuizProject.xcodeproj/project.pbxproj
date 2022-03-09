@@ -27,6 +27,7 @@
 		0229A786278B5F4D00DE69CF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0229A785278B5F4D00DE69CF /* LoginView.swift */; };
 		0229A78C278B736300DE69CF /* InputTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0229A78B278B736300DE69CF /* InputTextFieldView.swift */; };
 		0229A790278B94C100DE69CF /* PasswordFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0229A78F278B94C100DE69CF /* PasswordFieldView.swift */; };
+		027977FB27D8093C0042F925 /* StringToDifficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027977FA27D8093C0042F925 /* StringToDifficulty.swift */; };
 		028055A927CC0AB900DBD48C /* LeadreboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028055A827CC0AB900DBD48C /* LeadreboardService.swift */; };
 		028055AB27CC146400DBD48C /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028055AA27CC146400DBD48C /* LeaderboardView.swift */; };
 		028055AF27CE960E00DBD48C /* FacebookLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028055AE27CE960E00DBD48C /* FacebookLoginView.swift */; };
@@ -76,6 +77,7 @@
 		0229A785278B5F4D00DE69CF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0229A78B278B736300DE69CF /* InputTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextFieldView.swift; sourceTree = "<group>"; };
 		0229A78F278B94C100DE69CF /* PasswordFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFieldView.swift; sourceTree = "<group>"; };
+		027977FA27D8093C0042F925 /* StringToDifficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringToDifficulty.swift; sourceTree = "<group>"; };
 		028055A827CC0AB900DBD48C /* LeadreboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadreboardService.swift; sourceTree = "<group>"; };
 		028055AA27CC146400DBD48C /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		028055AC27CE875D00DBD48C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 			children = (
 				0298827127BC390500B6E9ED /* StringValidator.swift */,
 				02DB962627C56BF900238EDC /* Naviagator.swift */,
+				027977FA27D8093C0042F925 /* StringToDifficulty.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				028055AF27CE960E00DBD48C /* FacebookLoginView.swift in Sources */,
 				02EE409027989E5C0034B58B /* HomeView.swift in Sources */,
 				02EE408927960D4B0034B58B /* RegisterView.swift in Sources */,
+				027977FB27D8093C0042F925 /* StringToDifficulty.swift in Sources */,
 				02EE409F27A7224D0034B58B /* SessionUserDetails.swift in Sources */,
 				02EE408B27960D5B0034B58B /* ButtonView.swift in Sources */,
 				02EE40962799F6580034B58B /* RegistrationService.swift in Sources */,
