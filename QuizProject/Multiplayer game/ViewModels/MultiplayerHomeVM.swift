@@ -24,12 +24,9 @@ final class MultiplayerHomeVM: ObservableObject {
     }
     
     func checkCeateActive() {
-        print("0")
         if(diffVM.isCheckedEasy || diffVM.isCheckedHard){
-            print("1")
             for subj in subVM.subjects {
                 if (subj.isChecked){
-                    print("2")
                     isCreateActive = true
                     timer.upstream.connect().cancel()
                     break;

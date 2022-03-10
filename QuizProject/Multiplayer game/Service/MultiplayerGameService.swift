@@ -50,6 +50,17 @@ class MultiplayerGameService {
         return users
     }
     
+    private func readDictionaryToUsersArr(usersArrDict: [String:[String:Any]]) -> [SessionUserDetails] {
+        var users: [SessionUserDetails] = []
+        for (_, user) in usersArrDict {
+            users.append(SessionUserDetails(username: user["username"] as! String,
+                                            points: user["points"] as! Int,
+                                            last_day_played: user["last_day_played"] as! String,
+                                            played_games: user["played_games"] as! Int))
+        }
+        return users
+    }
+    
     private func subjectsToString(_ subjects: [Subject]) -> [String]{
         var subjectsArr: [String] = []
         for subject in subjects {
@@ -188,22 +199,26 @@ class MultiplayerGameService {
                             print(error!.localizedDescription)
                             return;
                         }
-                        let value = snapshot.value as? [String:Any]
-                        let admin = value?["admin"] as? [String:Any]
-                        let subjects = value?["subjects"] as? [String]
-                        let difficulties = value?["difficulties"] as? [String]
-                        let users = value?["users"] as? [[String:Any]]
-                        let questions = value?["questions"] as? [[String:Any]]
-                        let isGameStarted = value?["is_game_started"] as? String
-                        let room = Room(admin: dictionaryToUser(userDict: admin!), subjects: subjects!, difficutlies: difficulties!, users: dictionaryToUsersArr(usersArrDict: users!), questions: dictionaryToQuestionArr(questionsArrDict: questions!), is_game_started: isGameStarted!)
-                        promise(.success(room))
+                        let value = snapshot.value as? [String:[String:Any]]
+                        for (key, room) in value ?? [:] {
+                            if (key == admin){
+                                let admin = room["admin"] as? [String:Any]
+                                let subjects = room["subjects"] as? [String]
+                                let difficulties = room["difficulties"] as? [String]
+                                let users = room["users"] as? [[String:Any]]
+                                let questions = room["questions"] as? [[String:Any]]
+                                let isGameStarted = room["is_game_started"] as? String
+                                let room = Room(admin: dictionaryToUser(userDict: admin!), subjects: subjects!, difficutlies: difficulties!, users: dictionaryToUsersArr(usersArrDict: users!), questions: dictionaryToQuestionArr(questionsArrDict: questions!), is_game_started: isGameStarted!)
+                                promise(.success(room))
+                            }
+                        }
                     }
             }
         }
         .eraseToAnyPublisher()
     }
     
-    private func getRoomUsers(admin: String) ->AnyPublisher<[SessionUserDetails], Error> {
+    private func getRoomUsers(admin: String) -> AnyPublisher<[SessionUserDetails], Error> {
         Deferred {
             Future { promise in
                 Database.database().reference().child("rooms/\(admin)")
@@ -213,9 +228,13 @@ class MultiplayerGameService {
                             print(error!.localizedDescription)
                             return;
                         }
-                        let value = snapshot.value as? [String:Any]
-                        let users = value?["users"] as? [[String:Any]]
-                        promise(.success(dictionaryToUsersArr(usersArrDict: users!)))
+                        let value = snapshot.value as? [String:[String:Any]]
+                        for (key, room) in value ?? [:] {
+                            if (key == admin){
+                                let users = room["users"] as? [[String:Any]]
+                                promise(.success(dictionaryToUsersArr(usersArrDict: users!)))
+                            }
+                        }
                     }
             }
         }

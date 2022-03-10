@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import FirebaseDatabase
 
 class GameRoomViewModel: ObservableObject {
     var asCreator: Bool
@@ -20,11 +21,12 @@ class GameRoomViewModel: ObservableObject {
         self.asCreator = asCreator
         if (asCreator){
             multiplayerService.createRoom(subjects: subjects, diffs: diffs)
-                .sink { res in
+                .sink { [self] res in
                     switch res {
                     case .failure(_):
                         print("error")
-                    default: break
+                    case .finished:
+                        refreshRoom(admin: room.admin.username)
                     }
                 } receiveValue: { [self] getRoom in
                     room = getRoom
@@ -32,18 +34,25 @@ class GameRoomViewModel: ObservableObject {
                 .store(in: &subscriptions)
         } else {
             multiplayerService.joinRoom(admin: roomName)
-            multiplayerService.getRoom(admin: roomName)
-                .sink { res in
-                    switch res {
-                    case .failure(_):
-                        print("error2")
-                    default: break
-                    }
-                } receiveValue: { [self] getRoom in
-                    room = getRoom
-                }
-                .store(in: &subscriptions)
-
+            refreshRoom(admin: roomName)
         }
+    }
+    
+    private func refreshRoom(admin: String) {
+        Database.database().reference()
+            .child("rooms/\(admin)")
+            .observe(.childChanged) { [self] _ in
+                multiplayerService.getRoom(admin: admin)
+                    .sink { res in
+                        switch res {
+                        case .failure(_):
+                            print("error2")
+                        default: break
+                        }
+                    } receiveValue: { [self] getRoom in
+                        room = getRoom
+                    }
+                    .store(in: &subscriptions)
+            }
     }
 }

@@ -19,8 +19,6 @@ struct MultiplayerHomeView: View {
         VStack{
             if (!vm.showGameDetails){
                 Button {
-                    vm.diffVM.refreshBooleans()
-                    vm.subVM.refreshBooleans()
                     vm.showGameDetails.toggle()
                 } label: {
                     Text("Create Room")
