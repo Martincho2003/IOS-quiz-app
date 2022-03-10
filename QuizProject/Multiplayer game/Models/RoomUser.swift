@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RoomUser {
+struct RoomUser: Hashable {
     var username: String
     var gamePoints: Int
 }

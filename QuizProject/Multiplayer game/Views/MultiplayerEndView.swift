@@ -18,7 +18,7 @@ struct MultiplayerEndView: View {
     var body: some View {
         HStack {
             ForEach(vm.users, id: \.self) { user in
-                Text("\(user.username): \(user.points)")
+                Text("\(user.username): \(user.gamePoints)")
             }
         }
     }

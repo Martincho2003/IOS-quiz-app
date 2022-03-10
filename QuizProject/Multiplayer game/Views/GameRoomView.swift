@@ -17,33 +17,42 @@ struct GameRoomView: View {
     
     var body: some View {
         VStack{
-            if(vm.room.admin.username != ""){
-                Text("\(vm.room.admin.username)'s room")
-                    .font(.title)
-                Spacer()
-                HStack {
-                    Text("Subjects:")
-                    ForEach(vm.room.subjects, id: \.self) { subject in
-                        Text(subject)
-                    }
-                }
-                Spacer()
-                    .frame(height: 20)
-                HStack {
-                    Text("Difficulties:")
-                    ForEach(vm.room.difficutlies, id: \.self) { difficuty in
-                        Text(difficuty)
-                    }
-                }
-                Spacer()
-                    .frame(height: 50)
-                ForEach(vm.room.users, id: \.self) { user in
+            if(vm.room.is_game_started == "no"){
+                if(vm.room.admin.username != ""){
+                    Text("\(vm.room.admin.username)'s room")
+                        .font(.title)
+                    Spacer()
                     HStack {
-                        Text(user.username)
+                        Text("Subjects:")
+                        ForEach(vm.room.subjects, id: \.self) { subject in
+                            Text(subject)
+                        }
+                    }
+                    Spacer()
+                        .frame(height: 20)
+                    HStack {
+                        Text("Difficulties:")
+                        ForEach(vm.room.difficutlies, id: \.self) { difficuty in
+                            Text(difficuty)
+                        }
+                    }
+                    Spacer()
+                        .frame(height: 50)
+                    ForEach(vm.room.users, id: \.self) { user in
+                        HStack {
+                            Text(user.username)
+                        }
+                    }
+                    Spacer()
+                    if (vm.asCreator) {
+                        Button("Start Game", action: {
+                            vm.startGame()
+                        })
+                        .disabled(vm.isStartDisabled())
                     }
                 }
-                Spacer()
-//                NavigationLink(destination: QuestionView(vm: NormalGameViewModel(), label: <#T##() -> _#>)
+            } else {
+                MultiplayerQuestionView(vm: MultiplayerQuestionVM(room: vm.room))
             }
         }
     }

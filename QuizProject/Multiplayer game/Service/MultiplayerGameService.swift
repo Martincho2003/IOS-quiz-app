@@ -11,7 +11,7 @@ import FirebaseAuth
 import Combine
 
 class MultiplayerGameService {
-    private var gameService: GameService = GameService()
+    var gameService: GameService = GameService()
     private var subscriptions = Set<AnyCancellable>()
     
     private func userToDictionary(user: SessionUserDetails) -> [String:Any]{
@@ -270,5 +270,11 @@ class MultiplayerGameService {
                 userInfo = userDetails
             }
             .store(in: &subscriptions)
+    }
+    
+    func startGameRoom(admin: String) {
+        Database.database().reference()
+            .child("rooms/\(admin)")
+            .updateChildValues(["is_game_started": "yes"])
     }
 }

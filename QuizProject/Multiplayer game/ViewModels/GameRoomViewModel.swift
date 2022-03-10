@@ -55,4 +55,15 @@ class GameRoomViewModel: ObservableObject {
                     .store(in: &subscriptions)
             }
     }
+    
+    func isStartDisabled() -> Bool {
+        if (room.users.count < 2) {
+            return true
+        }
+        return false
+    }
+    
+    func startGame() {
+        multiplayerService.startGameRoom(admin: room.admin.username)
+    }
 }

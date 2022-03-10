@@ -8,9 +8,9 @@
 import Foundation
 
 class MultiplayerEndVM: ObservableObject {
-    @Published var users: [SessionUserDetails]
+    @Published var users: [RoomUser]
     
-    init(users: [SessionUserDetails]) {
+    init(users: [RoomUser]) {
         self.users = users
     }
 }
