@@ -6,11 +6,46 @@
 //
 
 import Foundation
+import FirebaseDatabase
+import Combine
 
 class MultiplayerEndVM: ObservableObject {
-    @Published var users: [RoomUser]
+    @Published var room: Room
+    @Published var users: [RoomUser] = []
+    private var multiplayerService = MultiplayerGameService()
+    private var subscriptions = Set<AnyCancellable>()
     
-    init(users: [RoomUser]) {
-        self.users = users
+    init(room: Room) {
+        self.room = room
+        refreshRoom(admin: room.admin.username)
+    }
+    
+    private func refreshRoom(admin: String) {
+        Database.database().reference()
+            .child("rooms/\(admin)")
+            .observe(.childChanged) { [self] _ in
+                multiplayerService.getRoom(admin: admin)
+                    .sink { res in
+                        switch res {
+                        case .failure(_):
+                            print("error2")
+                        case .finished:
+                            multiplayerService.getRoomUsersFromRoom(admin: room.admin.username)
+                                .sink { res in
+                                    switch res {
+                                    case .failure(_):
+                                        print(res)
+                                    default: break
+                                    }
+                                } receiveValue: { roomUsers in
+                                    users = roomUsers
+                                }
+                                .store(in: &subscriptions)
+                        }
+                    } receiveValue: { [self] getRoom in
+                        room = getRoom
+                    }
+                    .store(in: &subscriptions)
+            }
     }
 }

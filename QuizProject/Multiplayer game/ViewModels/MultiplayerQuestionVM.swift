@@ -53,17 +53,17 @@ class MultiplayerQuestionVM: ObservableObject {
                 points += 4
             }
         }
-//        if (currentQuestion == 9) {
-//            service.sendPoints(points)
-//        }
+        if (currentQuestion == 9) {
+            service.setRoomPoints(admin: room.admin.username, user: currentUser, points: points)
+        }
         currentQuestion += 1
     }
     
     func checkSeconds() {
         if (seconds[currentQuestion] == 0) {
-//            if (currentQuestion == 9) {
-//                service.sendPoints(points)
-//            }
+            if (currentQuestion == 9) {
+                service.setRoomPoints(admin: room.admin.username, user: currentUser, points: points)
+            }
             currentQuestion += 1
         }
     }

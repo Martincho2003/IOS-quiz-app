@@ -26,6 +26,6 @@ struct MultiplayerEndView: View {
 
 struct MultiplayerEndView_Previews: PreviewProvider {
     static var previews: some View {
-        MultiplayerEndView(vm: MultiplayerEndVM(users: []))
+        MultiplayerEndView(vm: MultiplayerEndVM(room: Room(admin: SessionUserDetails(username: "", points: -1, last_day_played: "", played_games: -1), subjects: [], difficutlies: [], users: [], questions: [], is_game_started: "")))
     }
 }

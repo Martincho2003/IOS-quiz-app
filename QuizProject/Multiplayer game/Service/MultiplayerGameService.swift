@@ -277,4 +277,80 @@ class MultiplayerGameService {
             .child("rooms/\(admin)")
             .updateChildValues(["is_game_started": "yes"])
     }
+    
+    private func findUserInRoom(admin: String, user: SessionUserDetails) -> AnyPublisher<Int, Error> {
+        Deferred {
+            Future { promise in
+                Database.database().reference()
+                    .child("rooms/\(admin)")
+                    .getData { error, snapshot in
+                        guard error == nil else {
+                            promise(.failure(error!))
+                            print(error!.localizedDescription)
+                            return;
+                        }
+                        let value = snapshot.value as? [String:[String:Any]]
+                        for (key, room) in value ?? [:] {
+                            if (key == admin){
+                                let usersDict = room["users"] as? [[String:Any]]
+                                for i in 0..<usersDict!.count {
+                                    if (usersDict![i]["username"] as! String == user.username){
+                                        promise(.success(i))
+                                    }
+                                }
+                            }
+                        }
+                    }
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func setRoomPoints(admin: String, user: SessionUserDetails, points: Int) {
+        var userId: Int = -1
+        findUserInRoom(admin: admin, user: user)
+            .sink { res in
+                switch res{
+                case .failure(_):
+                    print(res)
+                case .finished:
+                    Database.database().reference()
+                        .child("rooms/\(admin)/users/\(userId)")
+                        .updateChildValues(["room_points": points])
+                }
+            } receiveValue: { userID in
+                userId = userID
+            }
+            .store(in: &subscriptions)
+        
+    }
+    
+    func getRoomUsersFromRoom(admin: String) -> AnyPublisher<[RoomUser], Error> {
+        Deferred {
+            Future<[RoomUser], Error> { promise in
+                Database.database().reference()
+                    .child("rooms/\(admin)")
+                    .getData { error, snapshot in
+                        guard error == nil else {
+                            promise(.failure(error!))
+                            print(error!.localizedDescription)
+                            return;
+                        }
+                        var roomUsers: [RoomUser] = []
+                        let value = snapshot.value as? [String:[String:Any]]
+                        for (key, room) in value ?? [:] {
+                            if (key == admin){
+                                let users = room["users"] as? [[String:Any]]
+                                for i in 0..<users!.count {
+                                    roomUsers.append(RoomUser(username: users![i]["username"] as! String, gamePoints: users![i]["room_points"] as! Int))
+                                }
+                                promise(.success(roomUsers))
+                            }
+                        }
+                        promise(.success(roomUsers))
+                    }
+            }
+        }
+        .eraseToAnyPublisher()
+    }
 }
