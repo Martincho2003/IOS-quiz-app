@@ -17,10 +17,10 @@ struct MultiplayerQuestionView: View {
     
     var body: some View {
         VStack{
-            if(vm.currentQuestion == $vm.room.questions.count){
+            if(vm.user.isFinished == "yes"){
                 MultiplayerEndView(vm: MultiplayerEndVM(room: vm.room))
             }else{
-                if(!$vm.room.questions.isEmpty){
+                if(!$vm.room.questions.isEmpty && vm.user.isFinished == "no" && vm.currentQuestion < vm.room.questions.count){
                     Text("\(vm.seconds[vm.currentQuestion])")
                         .onReceive(vm.timer) { _ in
                             vm.seconds[vm.currentQuestion] -= 1

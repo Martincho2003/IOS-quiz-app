@@ -10,4 +10,5 @@ import Foundation
 struct RoomUser: Hashable {
     var username: String
     var gamePoints: Int
+    var isFinished: String
 }

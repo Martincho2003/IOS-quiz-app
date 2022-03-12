@@ -18,6 +18,7 @@ class MultiplayerGameService {
         return [
             "username": user.username,
             "room_points": 0,
+            "is_game_finished": "no",
             "points": user.points,
             "last_day_played": user.last_day_played,
             "played_games": user.played_games]
@@ -42,17 +43,6 @@ class MultiplayerGameService {
     private func dictionaryToUsersArr(usersArrDict: [[String:Any]]) -> [SessionUserDetails] {
         var users: [SessionUserDetails] = []
         for user in usersArrDict {
-            users.append(SessionUserDetails(username: user["username"] as! String,
-                                            points: user["points"] as! Int,
-                                            last_day_played: user["last_day_played"] as! String,
-                                            played_games: user["played_games"] as! Int))
-        }
-        return users
-    }
-    
-    private func readDictionaryToUsersArr(usersArrDict: [String:[String:Any]]) -> [SessionUserDetails] {
-        var users: [SessionUserDetails] = []
-        for (_, user) in usersArrDict {
             users.append(SessionUserDetails(username: user["username"] as! String,
                                             points: user["points"] as! Int,
                                             last_day_played: user["last_day_played"] as! String,
@@ -316,7 +306,8 @@ class MultiplayerGameService {
                 case .finished:
                     Database.database().reference()
                         .child("rooms/\(admin)/users/\(userId)")
-                        .updateChildValues(["room_points": points])
+                        .updateChildValues(["room_points": points,
+                                            "is_game_finished": "yes"])
                 }
             } receiveValue: { userID in
                 userId = userID
@@ -327,7 +318,7 @@ class MultiplayerGameService {
     
     func getRoomUsersFromRoom(admin: String) -> AnyPublisher<[RoomUser], Error> {
         Deferred {
-            Future<[RoomUser], Error> { promise in
+            Future { promise in
                 Database.database().reference()
                     .child("rooms/\(admin)")
                     .getData { error, snapshot in
@@ -342,12 +333,40 @@ class MultiplayerGameService {
                             if (key == admin){
                                 let users = room["users"] as? [[String:Any]]
                                 for i in 0..<users!.count {
-                                    roomUsers.append(RoomUser(username: users![i]["username"] as! String, gamePoints: users![i]["room_points"] as! Int))
+                                    roomUsers.append(RoomUser(username: users![i]["username"] as! String, gamePoints: users![i]["room_points"] as! Int, isFinished: users![i]["is_game_finished"] as! String))
                                 }
                                 promise(.success(roomUsers))
                             }
                         }
                         promise(.success(roomUsers))
+                    }
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func getRoomUserFromRoom(admin: String, username: String) -> AnyPublisher<RoomUser, Error> {
+        Deferred {
+            Future { promise in
+                Database.database().reference()
+                    .child("rooms/\(admin)")
+                    .getData { error, snapshot in
+                        guard error == nil else {
+                            promise(.failure(error!))
+                            print(error!.localizedDescription)
+                            return;
+                        }
+                        let value = snapshot.value as? [String:[String:Any]]
+                        for (key, room) in value ?? [:] {
+                            if (key == admin){
+                                let users = room["users"] as? [[String:Any]]
+                                for i in 0..<users!.count {
+                                    if (users![i]["username"] as! String == username){
+                                        promise(.success(RoomUser(username: users![i]["username"] as! String, gamePoints: users![i]["room_points"] as! Int, isFinished: users![i]["is_game_finished"] as! String)))
+                                    }
+                                }
+                            }
+                        }
                     }
             }
         }

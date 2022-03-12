@@ -7,10 +7,12 @@
 
 import Foundation
 import Combine
+import FirebaseDatabase
 
 class MultiplayerQuestionVM: ObservableObject {
     var currentUser: SessionUserDetails = SessionUserDetails(username: "", points: -1, last_day_played: "", played_games: -1)
     @Published var room: Room
+    @Published var user: RoomUser = RoomUser(username: "", gamePoints: 0, isFinished: "no")
     private var cancellable = Set<AnyCancellable>()
     private var service: MultiplayerGameService = MultiplayerGameService()
     @Published var currentQuestion: Int = 0
@@ -23,11 +25,12 @@ class MultiplayerQuestionVM: ObservableObject {
     init(room: Room){
         self.room = room
         service.gameService.getUserDetails()
-            .sink { res in
+            .sink { [self] res in
                 switch res {
                 case .failure(_):
                     print(res)
-                default: break
+                case .finished:
+                    refreshRoom(admin: room.admin.username)
                 }
             } receiveValue: { details in
                 self.currentUser = details
@@ -43,6 +46,35 @@ class MultiplayerQuestionVM: ObservableObject {
             isAddTime.append(false)
             isExclude.append(false)
         }
+    }
+    
+    private func refreshRoom(admin: String) {
+        Database.database().reference()
+            .child("rooms/\(admin)")
+            .observe(.childChanged) { [self] _ in
+                service.getRoom(admin: admin)
+                    .sink { res in
+                        switch res {
+                        case .failure(_):
+                            print("error2")
+                        case .finished:
+                            service.getRoomUserFromRoom(admin: room.admin.username, username: currentUser.username)
+                                .sink { res in
+                                    switch res {
+                                    case .failure(_):
+                                        print(res)
+                                    default: break
+                                    }
+                                } receiveValue: { roomUser in
+                                    user = roomUser
+                                }
+                                .store(in: &cancellable)
+                        }
+                    } receiveValue: { [self] getRoom in
+                        room = getRoom
+                    }
+                    .store(in: &cancellable)
+            }
     }
     
     func checkAnswer(_ answer: NewAnswer) {
