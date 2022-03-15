@@ -10,6 +10,9 @@ import Combine
 import FirebaseDatabase
 
 class MultiplayerQuestionVM: ObservableObject {
+    let ref = Database.database().reference()
+    private var refHandle: DatabaseHandle!
+    var refChild: String = ""
     var currentUser: SessionUserDetails = SessionUserDetails(username: "", points: -1, last_day_played: "", played_games: -1)
     @Published var room: Room
     @Published var user: RoomUser = RoomUser(username: "", gamePoints: 0, isFinished: "no")
@@ -49,8 +52,9 @@ class MultiplayerQuestionVM: ObservableObject {
     }
     
     private func refreshRoom(admin: String) {
-        Database.database().reference()
-            .child("rooms/\(admin)")
+        refChild = "rooms/\(admin)"
+        refHandle = ref
+            .child(refChild)
             .observe(.childChanged) { [self] _ in
                 service.getRoom(admin: admin)
                     .sink { res in
@@ -67,6 +71,9 @@ class MultiplayerQuestionVM: ObservableObject {
                                     }
                                 } receiveValue: { roomUser in
                                     user = roomUser
+                                    if (roomUser.isFinished == "yes"){
+                                        ref.child(refChild).removeObserver(withHandle: refHandle)
+                                    }
                                 }
                                 .store(in: &cancellable)
                         }

@@ -17,22 +17,12 @@ class LeaderboardService {
             Future { promise in
                 Database.database().reference()
                     .child("users")
-//                    .queryOrdered(byChild: "points")
-//                    .queryLimited(toFirst: 10)
                     .getData { error, users in
                         guard error == nil else {
                             promise(.failure(error!))
                             print(error!.localizedDescription)
                             return;
                         }
-//                        for userInfo in users.children {
-//                            let userDict = userInfo
-////                            for user in userInfo as! [String:AnyObject] {
-////                                let username = user["username"] as! String
-////                                let points = user["points"] as! Int
-////                            }
-//                            print((userInfo as AnyObject).value(forKey: "points"))
-//                        }
                         
                         var topUsers: [SessionUserDetails] = []
                         let data = users.value as? [String:[String:Any]]

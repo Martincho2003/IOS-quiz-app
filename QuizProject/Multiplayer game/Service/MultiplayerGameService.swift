@@ -299,7 +299,7 @@ class MultiplayerGameService {
     func setRoomPoints(admin: String, user: SessionUserDetails, points: Int) {
         var userId: Int = -1
         findUserInRoom(admin: admin, user: user)
-            .sink { res in
+            .sink { [self] res in
                 switch res{
                 case .failure(_):
                     print(res)
@@ -308,6 +308,7 @@ class MultiplayerGameService {
                         .child("rooms/\(admin)/users/\(userId)")
                         .updateChildValues(["room_points": points,
                                             "is_game_finished": "yes"])
+                    gameService.sendPoints(points)
                 }
             } receiveValue: { userID in
                 userId = userID

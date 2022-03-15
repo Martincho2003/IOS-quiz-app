@@ -12,6 +12,7 @@ import FirebaseDatabase
 class GameRoomViewModel: ObservableObject {
     let ref = Database.database().reference()
     private var refHandle: DatabaseHandle!
+    var refChild: String = ""
     var asCreator: Bool
     var roomName: String = ""
     var subscriptions = Set<AnyCancellable>()
@@ -41,8 +42,9 @@ class GameRoomViewModel: ObservableObject {
     }
     
     private func refreshRoom(admin: String) {
+        refChild = "rooms/\(admin)"
         refHandle = ref
-            .child("rooms/\(admin)")
+            .child(refChild)
             .observe(.childChanged) { [self] _ in
                 multiplayerService.getRoom(admin: admin)
                     .sink { res in
@@ -53,6 +55,9 @@ class GameRoomViewModel: ObservableObject {
                         }
                     } receiveValue: { [self] getRoom in
                         room = getRoom
+                        if (getRoom.is_game_started == "yes"){
+                            ref.child(refChild).removeObserver(withHandle: refHandle)
+                        }
                     }
                     .store(in: &subscriptions)
             }
@@ -67,6 +72,5 @@ class GameRoomViewModel: ObservableObject {
     
     func startGame() {
         multiplayerService.startGameRoom(admin: room.admin.username)
-        ref.removeObserver(withHandle: refHandle)
     }
 }

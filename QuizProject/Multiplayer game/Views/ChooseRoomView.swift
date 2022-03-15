@@ -16,8 +16,10 @@ struct ChooseRoomView: View {
     var body: some View {
         if(!vm.rooms.isEmpty){
             ForEach(vm.rooms, id: \.self) { room in
-                NavigationLink(destination: NavigationLazyView(GameRoomView(vm: GameRoomViewModel(asCreator: false, subjects: [], diffs: [], roomName: room.admin.username)))) {
-                    Text("\(room.admin.username)'s room")
+                if (room.is_game_started == "no"){
+                    NavigationLink(destination: NavigationLazyView(GameRoomView(vm: GameRoomViewModel(asCreator: false, subjects: [], diffs: [], roomName: room.admin.username)))) {
+                        Text("\(room.admin.username)'s room")
+                    }
                 }
             }
         }
