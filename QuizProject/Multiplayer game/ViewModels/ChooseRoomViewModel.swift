@@ -27,14 +27,32 @@ class ChooseRoomViewModel: ObservableObject {
                 rooms = roomsFIR
             }
             .store(in: &subscriptions)
-        refreshRooms()
-
+        refreshRoomsOnAdd()
+        refreshRoomsOnChange()
     }
     
-    private func refreshRooms() {
+    private func refreshRoomsOnAdd() {
         Database.database().reference()
             .child("rooms")
             .observe(.childAdded) { [self] _ in
+                multiplayerSrevice.getAllRooms()
+                    .sink { res in
+                        switch res {
+                        case .finished:
+                            print("nice")
+                        case .failure(_):
+                            print(res)
+                        }
+                    } receiveValue: { [self] roomsFIR in
+                        rooms = roomsFIR
+                    }
+                    .store(in: &subscriptions)
+            }
+    }
+    private func refreshRoomsOnChange() {
+        Database.database().reference()
+            .child("rooms")
+            .observe(.childChanged) { [self] _ in
                 multiplayerSrevice.getAllRooms()
                     .sink { res in
                         switch res {
