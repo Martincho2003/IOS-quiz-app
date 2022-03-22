@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NewQuestion {
+struct NewQuestion: Hashable {
     var question: String
     var answers: [NewAnswer]
     var difficulty: Difficulty

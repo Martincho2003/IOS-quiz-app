@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import FirebaseDatabase
 
 final class HomeViewModel: ObservableObject {
     @Published var topUsers: [SessionUserDetails] = []
@@ -19,17 +20,25 @@ final class HomeViewModel: ObservableObject {
     var service = LeaderboardService()
 
     init(){
-        service.getTop10Players()
-            .sink { res in
-                switch res {
-                case .failure(_):
-                    print(res)
-                default: break
-                }
-            } receiveValue: { [self] users in
-                topUsers.append(contentsOf: users)
+        refreshLeaderBoard()
+    }
+    
+    private func refreshLeaderBoard(){
+        Database.database().reference()
+            .child("users")
+            .observe(.childAdded) { [self] _ in
+                service.getTop10Players()
+                    .sink { res in
+                        switch res {
+                        case .failure(_):
+                            print(res)
+                        default: break
+                        }
+                    } receiveValue: { [self] users in
+                        topUsers = users
+                    }
+                    .store(in: &subscriptions)
             }
-            .store(in: &subscriptions)
     }
     
     func sendSubjects() -> [Subject] {

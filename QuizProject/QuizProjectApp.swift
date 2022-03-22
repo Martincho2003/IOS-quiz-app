@@ -53,7 +53,10 @@ struct QuizProjectApp: App {
                 //HomeView()
                 //coordinator.homeView().environmentObject(sessionService)
                 NavigationView{
-                    HomeView().environmentObject(sessionService)
+                    HomeView()
+                        .environmentObject(sessionService)
+                        .navigationBarTitle("")
+                        .navigationBarHidden(true)
                 }
             case .loggedOut:
                 LoginView()

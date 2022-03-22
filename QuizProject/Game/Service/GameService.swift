@@ -67,45 +67,33 @@ class GameService {
         .eraseToAnyPublisher()
     }
     
-    private func getUserDetails() -> AnyPublisher<SessionUserDetails,Error>{
+    func getUserDetails() -> AnyPublisher<SessionUserDetails,Error>{
         Deferred {
             Future { promise in
                 let userID = Auth.auth().currentUser!.uid
                 let ref = Database.database().reference()
                 ref.child("users/\(userID)")
-                    .getData { error, user in
+                    .getData { error, users in
                         guard error == nil else {
                             promise(.failure(error!))
                             print(error!.localizedDescription)
                             return;
                         }
-                        let value = user.value as? NSDictionary
-                        let username = value?["username"] as? String
-                        let points = value?["points"] as? Int
-                        let day = value?["last_day_played"] as? String
-                        let times = value?["played_games"] as? Int
-                        promise(.success(SessionUserDetails(username: username ?? "", points: points ?? 0, last_day_played: day ?? "", played_games: times ?? 0)))
+                        let value = users.value as? [String:[String:Any]]
+                        for (key, user) in value ?? [:] {
+                            if (key == userID){
+                                let username = user["username"] as? String
+                                let points = user["points"] as? Int
+                                let day = user["last_day_played"] as? String
+                                let times = user["played_games"] as? Int
+                                promise(.success(SessionUserDetails(username: username ?? "", points: points ?? 0, last_day_played: day ?? "", played_games: times ?? 0)))
+                            }
+                        }
                     }
             }
         }
         .eraseToAnyPublisher()
     }
-    
-//    func getPoints() -> Int{
-//        var userInfo: SessionUserDetails? = nil
-//        getUserDetails()
-//            .sink { res in
-//                switch res {
-//                case .finished:
-//                    return userInfo!.points
-//                case .failure(_):
-//                    print(res)
-//                }
-//            } receiveValue: { details in
-//                userInfo = details
-//            }
-//            .store(in: &cancellable)
-//    }
     
     func sendPoints(_ gamePoints: Int) {
         let userID = Auth.auth().currentUser!.uid
