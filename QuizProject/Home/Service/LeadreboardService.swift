@@ -41,6 +41,9 @@ class LeaderboardService {
                             topUsers.append(SessionUserDetails(username: username, points: points, last_day_played: "", played_games: 0))
                         }
                         topUsers.sort(by: {$0.points > $1.points})
+                        while (topUsers.count > 10){
+                            topUsers.remove(at: 10)
+                        }
                         promise(.success(topUsers))
                     }
             }

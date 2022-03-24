@@ -12,7 +12,7 @@ struct LoginView: View {
     
     @State private var isRegister: Bool = false
     
-    @StateObject private var vm = LoginViewModelImpl(service: LoginSerivce())
+    @StateObject private var vm = LoginViewModelImpl()
 
     var body: some View {
         VStack(spacing: 16) {

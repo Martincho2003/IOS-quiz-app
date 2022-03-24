@@ -52,15 +52,39 @@ class GameService {
                 var questionsP: [NewQuestion] = []
                 for _ in 0..<10 {
                     getFullyRandomQuestions(subjects: subjects, diffs: difficulties)
-                        .sink { error in
-                        print(error)
-                        if( questionsP.count == 10){
-                            promise(.success(questionsP))
+                        .sink { res in
+                            switch res {
+                            case .finished :
+                                if( questionsP.count == 10){
+                                    if (questionsP.uniqued().count == 10){
+                                    promise(.success(questionsP))
+                                    } else {
+                                        questionsP = questionsP.uniqued()
+                                        for _ in 0..<10 {
+                                            getFullyRandomQuestions(subjects: subjects, diffs: difficulties)
+                                                .sink { res in
+                                                    switch res {
+                                                    case .finished :
+                                                        if( questionsP.count == 10){
+                                                            promise(.success(questionsP))
+                                                        }
+                                                    case .failure(_):
+                                                        print(res)
+                                                    }
+                                                } receiveValue: { question in
+                                                    questionsP.append(question)
+                                                }
+                                                .store(in: &cancellable)
+                                        }
+                                    }
+                                }
+                            case .failure(_):
+                                print(res)
+                            }
+                        } receiveValue: { question in
+                            questionsP.append(question)
                         }
-                    } receiveValue: { question in
-                        questionsP.append(question)
-                    }
-                    .store(in: &cancellable)
+                        .store(in: &cancellable)
                 }
             }
         }

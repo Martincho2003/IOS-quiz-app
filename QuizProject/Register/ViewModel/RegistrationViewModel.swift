@@ -10,23 +10,14 @@ import Combine
 import FirebaseAuth
 import FirebaseDatabase
 
-enum RegistrationState {
-    case successfull
-    case failed(error: Error)
-    case na
-}
-
 protocol RegistrationViewModel {
     func register()
     var service: RegistrationService { get }
-    var state: RegistrationState { get }
-    init(service: RegistrationService)
 }
 
 final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
-    var service: RegistrationService
+    var service: RegistrationService = RegistrationService()
     
-    var state: RegistrationState = .na
     @Published var email: String = ""
     @Published var username: String = ""
     @Published var password: String = ""
@@ -36,10 +27,6 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
     
     private var subscriptions = Set<AnyCancellable>()
     
-    init(service: RegistrationService) {
-        self.service = service
-    }
-    
     func register() {
         service
             .register(emaill: email, pass: password, usrname: username)
@@ -47,14 +34,11 @@ final class RegistrationViewModelImpl: ObservableObject, RegistrationViewModel {
                 switch res {
                 case .failure(let error):
                     print(error)
-                    self?.state = .failed(error: error)
                     self?.eror = error
                     self?.isError.toggle()
                 default: break
                 }
-            } receiveValue: { [weak self] in
-                self?.state = .successfull
-            }
+            } receiveValue: { _ in}
             .store(in: &subscriptions)
     }
     

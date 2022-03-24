@@ -66,7 +66,9 @@ final class SessionServiceImpl: ObservableObject, SessionService {
                 let times = value?["played_games"] as? Int
                 
                 DispatchQueue.main.async {
-                    self.userDetails = SessionUserDetails(username: username ?? "N/A", points: points ?? -1, last_day_played: day ?? "", played_games: times ?? 0)
+                    self.userDetails = SessionUserDetails(username: username ?? "N/A",
+                                                          points: points ?? -1, last_day_played: day ?? "",
+                                                          played_games: times ?? 0)
                 }
             }
     }

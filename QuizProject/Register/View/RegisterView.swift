@@ -11,7 +11,7 @@ struct RegisterView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    @StateObject private var vm = RegistrationViewModelImpl(service: RegistrationService())
+    @StateObject private var vm = RegistrationViewModelImpl()
     
     var body: some View {
         NavigationView{
@@ -41,6 +41,12 @@ struct RegisterView: View {
                         title: Text("Error"),
                         message: Text(vm.eror?.localizedDescription ?? "No error")
                     )
+                }
+                VStack {
+                    Spacer()
+                    FacebookLoginView().frame(width: 180, height: 28).padding(15)
+                    
+                    AppleLoginView()
                 }
                     
                 Spacer()

@@ -8,24 +8,15 @@
 import Foundation
 import Combine
 
-enum LoginState {
-    case successfull
-    case failed(error: Error)
-    case na
-}
-
 protocol LoginViewModel {
     func login()
-    var state: LoginState { get }
     var service: LoginSerivce { get }
-    init(service: LoginSerivce)
 }
 
 final class LoginViewModelImpl: ObservableObject, LoginViewModel {
     
-    var service: LoginSerivce
+    var service: LoginSerivce = LoginSerivce()
     
-    @Published var state: LoginState = .na
     @Published var email: String = ""
     @Published var password: String = ""
     
@@ -33,11 +24,6 @@ final class LoginViewModelImpl: ObservableObject, LoginViewModel {
     var eror: Error?
     
     private var subscriptions = Set<AnyCancellable>()
-    
-    init(service: LoginSerivce) {
-        self.service = service
-    }
-    
     
     func isLoginEnabled() -> Bool{
         if (password.isValidPassword && email.isValidEmail){
@@ -53,14 +39,11 @@ final class LoginViewModelImpl: ObservableObject, LoginViewModel {
                 
                 switch res {
                 case .failure(let err):
-                    self.state = .failed(error: err)
                     self.eror = err
                     self.isError.toggle()
                 default: break
                 }
-            } receiveValue: { [weak self] in
-                self?.state = .successfull
-            }
+            } receiveValue: { _ in}
             .store(in: &subscriptions)
     }
 }

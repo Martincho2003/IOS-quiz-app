@@ -20,13 +20,24 @@ final class HomeViewModel: ObservableObject {
     var service = LeaderboardService()
 
     init(){
-        refreshLeaderBoard()
+        service.getTop10Players()
+            .sink { res in
+                switch res {
+                case .failure(_):
+                    print(res)
+                default: break
+                }
+            } receiveValue: { [self] users in
+                topUsers = users
+            }
+            .store(in: &subscriptions)
+        refreshLeaderboard()
     }
     
-    private func refreshLeaderBoard(){
+    private func refreshLeaderboard(){
         Database.database().reference()
             .child("users")
-            .observe(.childAdded) { [self] _ in
+            .observe(.childChanged) { [self] _ in
                 service.getTop10Players()
                     .sink { res in
                         switch res {

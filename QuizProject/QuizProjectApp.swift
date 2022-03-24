@@ -44,14 +44,11 @@ struct QuizProjectApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var sessionService = SessionServiceImpl()
-    //let coordinator: Coordinator = Coordinator()
     
     var body: some Scene {
         WindowGroup {
             switch sessionService.state {
             case .loggedIn:
-                //HomeView()
-                //coordinator.homeView().environmentObject(sessionService)
                 NavigationView{
                     HomeView()
                         .environmentObject(sessionService)
@@ -62,21 +59,5 @@ struct QuizProjectApp: App {
                 LoginView()
             }
         }
-    }
-}
-
-class Coordinator {
-    var difficulties: [Difficulty] = []
-    var subjects: [Subject] = []
-    @Published var homeViewModel = HomeViewModel()
-    @ObservedObject var difficultyVM = DifficultyViewModel()
-    
-    func homeView() -> some View {
-        if (homeViewModel.showGameMode){
-            return AnyView(ChooseDifficulty(vm: difficultyVM))
-        }
-        
-        //let homeView =
-        return AnyView(HomeView())
     }
 }

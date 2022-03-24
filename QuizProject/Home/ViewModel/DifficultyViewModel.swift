@@ -36,22 +36,9 @@ final class DifficultyViewModel: ObservableObject {
         }
         
     }
-    
-    func refreshBooleans() {
-        isCheckedEasy = false
-        isCheckedHard = false
-    }
-    
     func sendDifficulties() -> [Difficulty] {
         reloadDifficulties()
         print(difficulties)
         return difficulties
-    }
-    
-    func isCreateDisabled() -> Bool {
-        if (isCheckedHard && isCheckedEasy){
-            return false
-        }
-        return true
     }
 }
