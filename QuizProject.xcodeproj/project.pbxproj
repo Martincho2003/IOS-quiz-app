@@ -47,7 +47,6 @@
 		02DB962027C42CB500238EDC /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB961F27C42CB500238EDC /* GameService.swift */; };
 		02DB962327C42EC000238EDC /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB962227C42EC000238EDC /* QuestionModel.swift */; };
 		02DB962527C42F0300238EDC /* AnswerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB962427C42F0300238EDC /* AnswerModel.swift */; };
-		02DB962727C56BFA00238EDC /* Naviagator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB962627C56BF900238EDC /* Naviagator.swift */; };
 		02DB962D27C5863A00238EDC /* ChooseSubjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB962C27C5863A00238EDC /* ChooseSubjects.swift */; };
 		02DB963027C651ED00238EDC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB962F27C651ED00238EDC /* HomeViewModel.swift */; };
 		02DB963227C67DE700238EDC /* Dificulties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB963127C67DE600238EDC /* Dificulties.swift */; };
@@ -105,7 +104,6 @@
 		02DB961F27C42CB500238EDC /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 		02DB962227C42EC000238EDC /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
 		02DB962427C42F0300238EDC /* AnswerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerModel.swift; sourceTree = "<group>"; };
-		02DB962627C56BF900238EDC /* Naviagator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Naviagator.swift; sourceTree = "<group>"; };
 		02DB962C27C5863A00238EDC /* ChooseSubjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSubjects.swift; sourceTree = "<group>"; };
 		02DB962F27C651ED00238EDC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		02DB963127C67DE600238EDC /* Dificulties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dificulties.swift; sourceTree = "<group>"; };
@@ -327,7 +325,6 @@
 			isa = PBXGroup;
 			children = (
 				0298827127BC390500B6E9ED /* StringValidator.swift */,
-				02DB962627C56BF900238EDC /* Naviagator.swift */,
 				027977FA27D8093C0042F925 /* StringToDifficulty.swift */,
 				029BB29227ECE8C900D09A9C /* UniqueArray.swift */,
 			);
@@ -570,7 +567,6 @@
 				0279780527DA828F0042F925 /* RoomUser.swift in Sources */,
 				02DB962D27C5863A00238EDC /* ChooseSubjects.swift in Sources */,
 				028055AB27CC146400DBD48C /* LeaderboardView.swift in Sources */,
-				02DB962727C56BFA00238EDC /* Naviagator.swift in Sources */,
 				02DB962527C42F0300238EDC /* AnswerModel.swift in Sources */,
 				02DB963827C6CB7F00238EDC /* SubjectViewModel.swift in Sources */,
 				02DB963227C67DE700238EDC /* Dificulties.swift in Sources */,

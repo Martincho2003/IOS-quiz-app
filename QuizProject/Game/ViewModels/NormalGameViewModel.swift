@@ -10,14 +10,11 @@ import FirebaseDatabase
 import Combine
 import SwiftUI
 
-
-
-
 final class NormalGameViewModel: ObservableObject {
     @Published var questions: [NewQuestion] = []
     @ObservedObject private var sessionService: SessionServiceImpl
     private var cancellable = Set<AnyCancellable>()
-    private var service: GameService
+    private var gameService: GameService = GameService()
     @Published var currentQuestion: Int = 0
     @Published var seconds: [Int] = []
     var points = 0
@@ -25,10 +22,10 @@ final class NormalGameViewModel: ObservableObject {
     @Published var isAddTime: [Bool] = []
     @Published var isExclude: [Bool] = []
     
-    init(service: GameService, sessionService: SessionServiceImpl, subjects: [Subject], diffs: [Difficulty]){
-        self.service = service
+    init(sessionService: SessionServiceImpl,
+         subjects: [Subject], diffs: [Difficulty]){
         self.sessionService = sessionService
-        service.getQuestionsFromPub(difficulties: diffs, subjects: subjects)
+        gameService.getQuestionsFromPub(difficulties: diffs, subjects: subjects)
             .sink { error in
             print(error)
         } receiveValue: { [self] question in
@@ -71,7 +68,11 @@ final class NormalGameViewModel: ObservableObject {
     
     func addTime() {
         seconds[currentQuestion] += 20
-        points -= 2
+        if (questions[currentQuestion].difficulty == .hard){
+            points -= 2
+        } else {
+            points -= 1
+        }
         isAddTime[currentQuestion].toggle()
     }
     
@@ -85,23 +86,43 @@ final class NormalGameViewModel: ObservableObject {
                 }
             }
         }
-        points -= 4
+        if (questions[currentQuestion].difficulty == .hard){
+            points -= 4
+        } else {
+            points -= 2
+        }
         isExclude[currentQuestion].toggle()
     }
     
     func isExcludeDeactivated() -> Bool {
-        if (sessionService.userDetails!.points + points < 4) {
-            return true
+        if (questions[currentQuestion].difficulty == .hard){
+            if (sessionService.userDetails!.points + points < 4) {
+                return true
+            } else {
+                return isExclude[currentQuestion]
+            }
         } else {
-            return isExclude[currentQuestion]
+            if (sessionService.userDetails!.points + points < 2) {
+                return true
+            } else {
+                return isExclude[currentQuestion]
+            }
         }
     }
     
     func isAddTimeDeactivated() -> Bool {
-        if (sessionService.userDetails!.points + points < 2) {
-            return true
+        if (questions[currentQuestion].difficulty == .hard){
+            if (sessionService.userDetails!.points + points < 2) {
+                return true
+            } else {
+                return isAddTime[currentQuestion]
+            }
         } else {
-            return isAddTime[currentQuestion]
+            if (sessionService.userDetails!.points + points < 1) {
+                return true
+            } else {
+                return isAddTime[currentQuestion]
+            }
         }
     }
 }

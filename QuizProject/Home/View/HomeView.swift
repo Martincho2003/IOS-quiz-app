@@ -57,6 +57,14 @@ struct HomeView: View {
                 }
             } else {
                 VStack{
+                    HStack{
+                        Button {
+                            vm.showGameMode.toggle()
+                        } label: {
+                            Text("< Back")
+                        }
+                        Spacer()
+                    }
                     ScrollView{
                         ChooseDifficulty(vm: vm.diffVM)
                     }
@@ -69,7 +77,7 @@ struct HomeView: View {
                 }
             }
         } else {
-            QuestionView(vm: NormalGameViewModel(service: GameService(), sessionService: sessionService, subjects: vm.sendSubjects(), diffs: vm.sendDiffs()))
+            QuestionView(vm: NormalGameViewModel(sessionService: sessionService, subjects: vm.sendSubjects(), diffs: vm.sendDiffs()))
                 .environmentObject(sessionService)
         }
     }
@@ -78,6 +86,5 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView().environmentObject(SessionServiceImpl())
-        //HomeView(vm: HomeViewModel(sessionService: SessionServiceImpl()))
     }
 }

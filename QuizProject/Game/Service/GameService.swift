@@ -11,7 +11,6 @@ import FirebaseAuth
 import Combine
 
 class GameService {
-    private var questions: [NewQuestion] = []
     var cancellable = Set<AnyCancellable>()
     
     private func getFullyRandomQuestions(subjects: [Subject], diffs: [Difficulty]) -> AnyPublisher<NewQuestion,Error>{
@@ -128,20 +127,20 @@ class GameService {
             .sink { res in
                 switch res {
                 case .finished:
-                    let ref = Database.database().reference()
+                    let ref = Database.database().reference().child("users/\(userID)")
                     if (gamePoints < 0) {
-                        ref.child("users/\(userID)").updateChildValues(["points": userInfo!.points + gamePoints,
-                                                                        "played_games": userInfo!.played_games + 1])
+                        ref.updateChildValues(["points": userInfo!.points + gamePoints,
+                                               "played_games": userInfo!.played_games + 1])
                     } else {
                         if (Calendar.current.isDate(format.date(from: userInfo!.last_day_played)!, equalTo: Date(), toGranularity: .day)) {
                             if (userInfo!.played_games < 3) {
-                                ref.child("users/\(userID)").updateChildValues(["points": userInfo!.points + gamePoints,
-                                                                                "played_games": userInfo!.played_games + 1])
+                                ref.updateChildValues(["points": userInfo!.points + gamePoints,
+                                                       "played_games": userInfo!.played_games + 1])
                             }
                         } else {
-                            ref.child("users/\(userID)").updateChildValues(["points": userInfo!.points + gamePoints,
-                                                                            "last_day_played": format.string(from: Date()),
-                                                                            "played_games": 1])
+                            ref.updateChildValues(["points": userInfo!.points + gamePoints,
+                                                            "last_day_played": format.string(from: Date()),
+                                                            "played_games": 1])
                         }
                     }
                 case .failure(_):

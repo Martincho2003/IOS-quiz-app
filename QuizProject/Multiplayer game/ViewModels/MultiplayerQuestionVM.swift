@@ -10,9 +10,8 @@ import Combine
 import FirebaseDatabase
 
 class MultiplayerQuestionVM: ObservableObject {
-    let ref = Database.database().reference()
+    private let ref = Database.database().reference()
     private var refHandle: DatabaseHandle!
-    var refChild: String = ""
     var currentUser: SessionUserDetails = SessionUserDetails(username: "", points: -1, last_day_played: "", played_games: -1)
     @Published var room: Room
     @Published var user: RoomUser = RoomUser(username: "", gamePoints: 0, isFinished: "no")
@@ -52,9 +51,8 @@ class MultiplayerQuestionVM: ObservableObject {
     }
     
     private func refreshRoom(admin: String) {
-        refChild = "rooms/\(admin)"
         refHandle = ref
-            .child(refChild)
+            .child("rooms/\(admin)")
             .observe(.childChanged) { [self] _ in
                 service.getRoom(admin: admin)
                     .sink { res in
@@ -72,7 +70,7 @@ class MultiplayerQuestionVM: ObservableObject {
                                 } receiveValue: { roomUser in
                                     user = roomUser
                                     if (roomUser.isFinished == "yes"){
-                                        ref.child(refChild).removeObserver(withHandle: refHandle)
+                                        ref.child("rooms/\(admin)").removeObserver(withHandle: refHandle)
                                     }
                                 }
                                 .store(in: &cancellable)
@@ -109,7 +107,11 @@ class MultiplayerQuestionVM: ObservableObject {
     
     func addTime() {
         seconds[currentQuestion] += 20
-        points -= 2
+        if (room.questions[currentQuestion].difficulty == .hard){
+            points -= 2
+        } else {
+            points -= 1
+        }
         isAddTime[currentQuestion].toggle()
     }
     
@@ -123,23 +125,43 @@ class MultiplayerQuestionVM: ObservableObject {
                 }
             }
         }
-        points -= 4
+        if (room.questions[currentQuestion].difficulty == .hard){
+            points -= 4
+        } else {
+            points -= 2
+        }
         isExclude[currentQuestion].toggle()
     }
     
     func isExcludeDeactivated() -> Bool {
-        if (currentUser.points + points < 4) {
-            return true
+        if (room.questions[currentQuestion].difficulty == .hard){
+            if (currentUser.points + points < 4) {
+                return true
+            } else {
+                return isExclude[currentQuestion]
+            }
         } else {
-            return isExclude[currentQuestion]
+            if (currentUser.points + points < 2) {
+                return true
+            } else {
+                return isExclude[currentQuestion]
+            }
         }
     }
     
     func isAddTimeDeactivated() -> Bool {
-        if (currentUser.points + points < 2) {
-            return true
+        if (room.questions[currentQuestion].difficulty == .hard){
+            if (currentUser.points + points < 2) {
+                return true
+            } else {
+                return isAddTime[currentQuestion]
+            }
         } else {
-            return isAddTime[currentQuestion]
+            if (currentUser.points + points < 1) {
+                return true
+            } else {
+                return isAddTime[currentQuestion]
+            }
         }
     }
 }
