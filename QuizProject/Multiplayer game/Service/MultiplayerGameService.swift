@@ -232,7 +232,11 @@ class MultiplayerGameService {
     }
     
     func joinRoom(admin: String) {
-        var userInfo: SessionUserDetails = SessionUserDetails(username: "", points: -1, last_day_played: "", played_games: -1)
+        var userInfo: SessionUserDetails =
+        SessionUserDetails(username: "",
+                           points: -1,
+                           last_day_played: "",
+                           played_games: -1)
         var roomUsers: [SessionUserDetails] = []
         gameService.getUserDetails()
             .sink { [self] userRes in
@@ -245,7 +249,8 @@ class MultiplayerGameService {
                                 roomUsers.append(userInfo)
                                 Database.database().reference()
                                     .child("rooms/\(admin)")
-                                    .updateChildValues(["users": usersToArrDictionary(users: roomUsers)])
+                                    .updateChildValues(
+                                        ["users": usersToArrDictionary(users: roomUsers)])
                             case .failure(_):
                                 print(allUsersRes)
                             }

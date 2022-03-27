@@ -11,10 +11,6 @@ struct MultiplayerHomeView: View {
     
     @StateObject var vm: MultiplayerHomeVM = MultiplayerHomeVM()
     
-//    init(vm: MultiplayerHomeVM) {
-//        self.vm = vm
-//    }
-    
     var body: some View {
         VStack{
             if (!vm.showGameDetails){
