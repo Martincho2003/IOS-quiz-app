@@ -49,7 +49,11 @@ struct MultiplayerQuestionView: View {
                         } label: {
                             VStack{
                                 Text("+20 sec")
+                                if (vm.room.questions[vm.currentQuestion].difficulty == .hard) {
                                 Text("-2 points")
+                                } else {
+                                    Text("-1 points")
+                                }
                             }
                         }
                             .frame(width: 80, height: 80)
@@ -64,7 +68,11 @@ struct MultiplayerQuestionView: View {
                         } label: {
                             VStack{
                                 Text("50/50")
+                                if (vm.room.questions[vm.currentQuestion].difficulty == .hard) {
                                 Text("-4 points")
+                                } else {
+                                    Text("-2 points")
+                                }
                             }
                         }
                             .frame(width: 80, height: 80)

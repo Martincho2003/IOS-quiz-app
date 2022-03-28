@@ -41,13 +41,8 @@ struct LoginView: View {
             }
             Spacer()
                 .frame(height: 30)
-            VStack{
-                Spacer()
-                FacebookLoginView().frame(width: 180, height: 28).padding(15)
-                
-                AppleLoginView()
-                Spacer()
-            }
+            FacebookLoginView().frame(width: 180, height: 28).padding(15)
+            Spacer()
         }
         .padding(.horizontal, 15)
     }

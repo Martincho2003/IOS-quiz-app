@@ -42,13 +42,8 @@ struct RegisterView: View {
                         message: Text(vm.eror?.localizedDescription ?? "No error")
                     )
                 }
-                VStack {
-                    Spacer()
-                    FacebookLoginView().frame(width: 180, height: 28).padding(15)
-                    
-                    AppleLoginView()
-                }
-                    
+                Spacer()
+                FacebookLoginView().frame(width: 180, height: 28).padding(15)
                 Spacer()
                     .frame(height: 100)
             }
