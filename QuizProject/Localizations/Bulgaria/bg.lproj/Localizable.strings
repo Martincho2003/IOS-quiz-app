@@ -1,0 +1,83 @@
+/* No comment provided by engineer. */
+"-1 points" = "-1 точка";
+
+/* No comment provided by engineer. */
+"-2 points" = "-2 точки";
+
+/* No comment provided by engineer. */
+"-4 points" = "-4 точки";
+
+/* No comment provided by engineer. */
+"%@'s room" = "Стаята на %@";
+
+/* No comment provided by engineer. */
+"%lld points" = "%lld точки";
+
+/* No comment provided by engineer. */
+"< Back" = "< Назад";
+
+/* No comment provided by engineer. */
+"Congratulations" = "Поздравления";
+
+/* No comment provided by engineer. */
+"Create" = "Създай";
+
+/* No comment provided by engineer. */
+"Create Room" = "Създаване на стая";
+
+/* No comment provided by engineer. */
+"Easy mode" = "Лесен режим";
+
+/* No comment provided by engineer. */
+"Error" = "Грешка";
+
+/* No comment provided by engineer. */
+"Go back" = "Върни се назад";
+
+/* No comment provided by engineer. */
+"Hard mode" = "Труден режим";
+
+/* No comment provided by engineer. */
+"Join Room" = "Присъединяване към стая";
+
+/* No comment provided by engineer. */
+"Logout" = "Излез";
+
+/* No comment provided by engineer. */
+"MultiPlayer Game" = "Онлайн игра";
+
+/* No comment provided by engineer. */
+"Quiz game" = "Викторини";
+
+/* No comment provided by engineer. */
+"Register" = "Регистрация";
+
+/* No comment provided by engineer. */
+"Single Player Game" = "Самостоятелна игра";
+
+/* No comment provided by engineer. */
+"You earned %lld points" = "Ти спечели %lld точки";
+
+"Login" = "Влизане";
+
+"Email" = "Имейл";
+
+"Password" = "Парола";
+
+"Username" = "Потребителско име";
+
+"Biology" = "Биология";
+
+"biology" = "биология";
+
+"Easy" = "Лесни";
+
+"Hard" = "Трудни";
+
+"Start game" = "Започни игра";
+
+"Subjects:" = " Предмети:";
+
+"Difficulties:" = "Трудности:";
+
+"Back" = "Назад";

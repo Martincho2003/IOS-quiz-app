@@ -13,11 +13,8 @@ final class LoginSerivce {
     
     func login(emaill: String, pass: String) -> AnyPublisher<Void, Error> {
         Deferred {
-            Future {
-                promise in
-                
-                Auth
-                    .auth()
+            Future { promise in
+                Auth.auth()
                     .signIn(withEmail: emaill, password: pass) { res, error in
                         if let err = error {
                             promise(.failure(err))

@@ -25,7 +25,7 @@ struct GameRoomView: View {
                     HStack {
                         Text("Subjects:")
                         ForEach(vm.room.subjects, id: \.self) { subject in
-                            Text(subject)
+                            Text(NSLocalizedString(subject, comment: ""))
                         }
                     }
                     Spacer()
@@ -33,7 +33,7 @@ struct GameRoomView: View {
                     HStack {
                         Text("Difficulties:")
                         ForEach(vm.room.difficutlies, id: \.self) { difficuty in
-                            Text(difficuty)
+                            Text(NSLocalizedString(difficuty, comment: ""))
                         }
                     }
                     Spacer()
@@ -45,7 +45,7 @@ struct GameRoomView: View {
                     }
                     Spacer()
                     if (vm.asCreator) {
-                        Button("Start Game", action: {
+                        Button(NSLocalizedString("Start game", comment: ""), action: {
                             vm.startGame()
                         })
                         .disabled(vm.isStartDisabled())

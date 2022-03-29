@@ -25,14 +25,14 @@ struct RegisterView: View {
                 
                 Spacer()
                 
-                InputTextField(text: $vm.email, placeholder: "Email", keyboardType: .emailAddress, symbol: "envelope")
+                InputTextField(text: $vm.email, placeholder: NSLocalizedString("Email", comment: ""), keyboardType: .emailAddress, symbol: "envelope")
                     .autocapitalization(.none)
                 
-                InputTextField(text: $vm.username, placeholder: "Username", keyboardType: .default, symbol: nil)
+                InputTextField(text: $vm.username, placeholder: NSLocalizedString("Username", comment: ""), keyboardType: .default, symbol: nil)
                 
-                PasswordFieldView(text: $vm.password, placeholder: "Password", symbol: "lock")
+                PasswordFieldView(text: $vm.password, placeholder: NSLocalizedString("Password", comment: ""), symbol: "lock")
                 
-                ButtonView(title: "Register") {
+                ButtonView(title: NSLocalizedString("Register", comment: "")) {
                     vm.register()
                 }
                 .disabled(!vm.isRegistrationEnabled())

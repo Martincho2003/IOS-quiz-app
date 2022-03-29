@@ -109,7 +109,10 @@ class GameService {
                                 let points = user["points"] as? Int
                                 let day = user["last_day_played"] as? String
                                 let times = user["played_games"] as? Int
-                                promise(.success(SessionUserDetails(username: username ?? "", points: points ?? 0, last_day_played: day ?? "", played_games: times ?? 0)))
+                                promise(.success(SessionUserDetails(username: username ?? "",
+                                                                    points: points ?? 0,
+                                                                    last_day_played: day ?? "",
+                                                                    played_games: times ?? 0)))
                             }
                         }
                     }
@@ -132,7 +135,8 @@ class GameService {
                         ref.updateChildValues(["points": userInfo!.points + gamePoints,
                                                "played_games": userInfo!.played_games + 1])
                     } else {
-                        if (Calendar.current.isDate(format.date(from: userInfo!.last_day_played)!, equalTo: Date(), toGranularity: .day)) {
+                        if (Calendar.current.isDate(format.date(from: userInfo!.last_day_played)!,
+                                                    equalTo: Date(), toGranularity: .day)) {
                             if (userInfo!.played_games < 3) {
                                 ref.updateChildValues(["points": userInfo!.points + gamePoints,
                                                        "played_games": userInfo!.played_games + 1])

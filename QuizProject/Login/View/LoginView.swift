@@ -21,10 +21,10 @@ struct LoginView: View {
             Text("Login")
                 .font(.system(size: 40, weight: .bold))
             Spacer()
-            InputTextField(text: $vm.email, placeholder: "Email", keyboardType: .emailAddress, symbol: "envelope")
+            InputTextField(text: $vm.email, placeholder: NSLocalizedString("Email", comment: ""), keyboardType: .emailAddress, symbol: "envelope")
                 .autocapitalization(.none)
-            PasswordFieldView(text: $vm.password, placeholder: "Password", symbol: "lock")
-            ButtonView(title: "Login") {
+            PasswordFieldView(text: $vm.password, placeholder: NSLocalizedString("Password", comment: ""), symbol: "lock")
+            ButtonView(title: NSLocalizedString("Login", comment: "")) {
                 vm.login()
             }
             .disabled(!vm.isLoginEnabled())
@@ -34,7 +34,7 @@ struct LoginView: View {
                     message: Text(vm.eror?.localizedDescription ?? "No error")
                 )
             }
-            ButtonView(title: "Register", background: .white, foreground: .blue, border: .blue) { isRegister.toggle()
+            ButtonView(title: NSLocalizedString("Register", comment: ""), background: .white, foreground: .blue, border: .blue) { isRegister.toggle()
             }
             .sheet(isPresented: $isRegister) {
                 RegisterView()

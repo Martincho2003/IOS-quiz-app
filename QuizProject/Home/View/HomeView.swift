@@ -29,9 +29,7 @@ struct HomeView: View {
                                 FacebookLoginView().frame(width: 10, height: 8)
                                     
                             } else {
-                                Button(action: sessionService.logout) {
-                                    Text("Logout")
-                                }
+                                Button(NSLocalizedString("Logout", comment: ""), action: sessionService.logout)
                             }
                         }
                         Spacer()
@@ -71,7 +69,7 @@ struct HomeView: View {
                     ScrollView{
                         ChooseSubjects(vm: vm.subVM)
                     }
-                    ButtonView(title: "Start game") {
+                    ButtonView(title: NSLocalizedString("Start game", comment: "")) {
                         vm.isGame.toggle()
                     }
                 }

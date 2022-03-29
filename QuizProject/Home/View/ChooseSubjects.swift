@@ -28,7 +28,7 @@ struct ChooseSubjects: View {
                     Button {
                         vm.changeCheck(name: subject.name)
                     } label: {
-                        Text(subject.name.title)
+                        Text(NSLocalizedString(subject.name.title, comment: ""))
                     }
                 }
             }
