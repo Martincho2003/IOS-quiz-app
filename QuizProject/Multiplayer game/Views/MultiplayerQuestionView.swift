@@ -52,7 +52,7 @@ struct MultiplayerQuestionView: View {
                                 if (vm.room.questions[vm.currentQuestion].difficulty == .hard) {
                                 Text("-2 points")
                                 } else {
-                                    Text("-1 points")
+                                    Text("-1 point")
                                 }
                             }
                         }

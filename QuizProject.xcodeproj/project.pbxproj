@@ -287,7 +287,6 @@
 		025251D027F35B0600E5264D /* Localizations */ = {
 			isa = PBXGroup;
 			children = (
-				025251D827F396FE00E5264D /* English */,
 				025251D127F35B1200E5264D /* Bulgaria */,
 			);
 			path = Localizations;
@@ -299,13 +298,6 @@
 				025251D227F35B8900E5264D /* Localizable.strings */,
 			);
 			path = Bulgaria;
-			sourceTree = "<group>";
-		};
-		025251D827F396FE00E5264D /* English */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = English;
 			sourceTree = "<group>";
 		};
 		028055A727CC0A7300DBD48C /* Service */ = {
@@ -527,6 +519,7 @@
 			knownRegions = (
 				en,
 				bg,
+				Base,
 			);
 			mainGroup = 0229A7602773270200DE69CF;
 			packageReferences = (
@@ -751,6 +744,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"QuizProject/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "/Users/martindinev/Projects/IOS-quiz-app/QuizProject/Info.plist";
@@ -784,6 +778,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"QuizProject/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "/Users/martindinev/Projects/IOS-quiz-app/QuizProject/Info.plist";

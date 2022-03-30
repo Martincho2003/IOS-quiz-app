@@ -1,11 +1,13 @@
 /* No comment provided by engineer. */
-"-1 points" = "-1 точка";
+"-1 point" = "-1 точка";
 
 /* No comment provided by engineer. */
 "-2 points" = "-2 точки";
 
 /* No comment provided by engineer. */
 "-4 points" = "-4 точки";
+
+"+20 sec" = "+20 сек";
 
 /* No comment provided by engineer. */
 "%@'s room" = "Стаята на %@";
