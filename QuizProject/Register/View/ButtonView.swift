@@ -17,7 +17,7 @@ struct ButtonView: View {
     let handler: () -> Void
     
     internal init(title: String,
-                  background: Color = .blue,
+                  background: Color = .brown,
                   foreground: Color = .white,
                   border: Color = .clear,
                   handler: @escaping () -> Void) {

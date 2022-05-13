@@ -28,6 +28,7 @@ struct ChooseDifficulty: View {
                     vm.isCheckedEasy.toggle()
                 } label: {
                     Text("Easy mode")
+                        .foregroundColor(.brown)
                 }
             }
             Spacer()
@@ -41,6 +42,7 @@ struct ChooseDifficulty: View {
                     vm.isCheckedHard.toggle()
                 } label: {
                     Text("Hard mode")
+                        .foregroundColor(.brown)
                 }
             }
         }

@@ -16,43 +16,52 @@ struct GameRoomView: View {
     }
     
     var body: some View {
-        VStack{
-            if(vm.room.is_game_started == "no"){
-                if(vm.room.admin.username != ""){
-                    Text("\(vm.room.admin.username)'s room")
-                        .font(.title)
-                    Spacer()
-                    HStack {
-                        Text("Subjects:")
-                        ForEach(vm.room.subjects, id: \.self) { subject in
-                            Text(NSLocalizedString(subject, comment: ""))
-                        }
-                    }
-                    Spacer()
-                        .frame(height: 20)
-                    HStack {
-                        Text("Difficulties:")
-                        ForEach(vm.room.difficutlies, id: \.self) { difficuty in
-                            Text(NSLocalizedString(difficuty, comment: ""))
-                        }
-                    }
-                    Spacer()
-                        .frame(height: 50)
-                    ForEach(vm.room.users, id: \.self) { user in
+        ZStack {
+            Color(UIColor(hue: 0.1056, saturation: 0.06, brightness: 0.98, alpha: 1.0)).ignoresSafeArea(.all)
+            VStack{
+                if(vm.room.is_game_started == "no"){
+                    if(vm.room.admin.username != ""){
+                        Text("\(vm.room.admin.username)'s room")
+                            .font(.title)
+                        Spacer()
                         HStack {
-                            Text(user.username)
+                            Text("Subjects:")
+                            ForEach(vm.room.subjects, id: \.self) { subject in
+                                Text(NSLocalizedString(subject, comment: ""))
+                            }
                         }
+                        Spacer()
+                            .frame(height: 20)
+                        HStack {
+                            Text("Difficulties:")
+                            ForEach(vm.room.difficutlies, id: \.self) { difficuty in
+                                Text(NSLocalizedString(difficuty, comment: ""))
+                            }
+                        }
+                        Spacer()
+                            .frame(height: 50)
+                        ForEach(vm.room.users, id: \.self) { user in
+                            HStack {
+                                Text(user.username)
+                            }
+                        }
+                        Spacer()
+                        if (vm.asCreator) {
+//                            Button(NSLocalizedString("Start game", comment: ""), action: {
+//                                vm.startGame()
+//                            })
+//                            .disabled(vm.isStartDisabled())
+                            ButtonView(title: "Start game") {
+                                vm.startGame()
+                            }
+                            .disabled(vm.isStartDisabled())
+                        }
+                        Spacer()
+                            .frame(height: 20)
                     }
-                    Spacer()
-                    if (vm.asCreator) {
-                        Button(NSLocalizedString("Start game", comment: ""), action: {
-                            vm.startGame()
-                        })
-                        .disabled(vm.isStartDisabled())
-                    }
+                } else {
+                    MultiplayerQuestionView(vm: MultiplayerQuestionVM(room: vm.room))
                 }
-            } else {
-                MultiplayerQuestionView(vm: MultiplayerQuestionVM(room: vm.room))
             }
         }
     }

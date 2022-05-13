@@ -34,10 +34,13 @@ struct MultiplayerQuestionView: View {
                     Spacer()
                     
                     ForEach(vm.room.questions[vm.currentQuestion].answers, id: \.self) { answer in
-                        Button {
-                            print(vm.checkAnswer(answer))
-                        } label: {
-                            Text(answer.answer)
+//                        Button {
+//                            vm.checkAnswer(answer)
+//                        } label: {
+//                            Text(answer.answer)
+//                        }
+                        ButtonView(title: answer.answer, background: .brown, foreground: .white, border: Color(UIColor(hue: 0.0972, saturation: 0.92, brightness: 0.77, alpha: 1.0))) {
+                            vm.checkAnswer(answer)
                         }
                     }
                     
@@ -58,7 +61,7 @@ struct MultiplayerQuestionView: View {
                         }
                             .frame(width: 80, height: 80)
                             .foregroundColor(Color.white)
-                            .background(Circle().fill(.blue))
+                            .background(Circle().fill(.brown))
                             .disabled(vm.isAddTimeDeactivated())
                         
                         Spacer()
@@ -77,7 +80,7 @@ struct MultiplayerQuestionView: View {
                         }
                             .frame(width: 80, height: 80)
                             .foregroundColor(Color.white)
-                            .background(Circle().fill(.blue))
+                            .background(Circle().fill(.brown))
                             .disabled(vm.isExcludeDeactivated())
                     }
                 }

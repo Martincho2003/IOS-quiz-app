@@ -14,7 +14,8 @@ struct RegisterView: View {
     @StateObject private var vm = RegistrationViewModelImpl()
     
     var body: some View {
-        NavigationView{
+        ZStack{
+            Color(UIColor(hue: 0.1056, saturation: 0.06, brightness: 0.98, alpha: 1.0)).ignoresSafeArea(.all)
             VStack(spacing: 16) {
                 
                 Spacer()

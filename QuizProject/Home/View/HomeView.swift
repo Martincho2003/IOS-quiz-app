@@ -29,7 +29,14 @@ struct HomeView: View {
                                 FacebookLoginView().frame(width: 10, height: 8)
                                     
                             } else {
-                                Button(NSLocalizedString("Logout", comment: ""), action: sessionService.logout)
+                                Button {
+                                    sessionService.logout()
+                                } label: {
+                                    Text("Logout")
+                                        .foregroundColor(.brown)
+                                        .font(Font.body.bold())
+                                }
+
                             }
                         }
                         Spacer()
@@ -38,19 +45,39 @@ struct HomeView: View {
                     Spacer()
                         .frame(height: 50)
                     LeaderboardView(users: vm.topUsers)
-                        .frame(height: 200)
-                        .border(.blue)
                     Spacer()
                         .frame(height: 150)
-                    Button {
-                        vm.showGameMode.toggle()
-                        print(vm.showGameMode)
-                    } label: {
-                        Text("Single Player Game")
+//                    Button {
+//                        vm.showGameMode.toggle()
+//                        print(vm.showGameMode)
+//                    } label: {
+//                        Text("Single Player Game")
+//                    }
+                    
+                    HStack {
+                        Spacer()
+                            .frame(width: 30)
+                        ButtonView(title: "Single Player Game") {
+                            vm.showGameMode.toggle()
+                        }
+                        Spacer()
+                            .frame(width: 30)
                     }
                     Spacer()
                         .frame(height: 50)
-                    NavigationLink("MultiPlayer Game", destination: MultiplayerHomeView())
+                    HStack {
+                        Spacer()
+                            .frame(width: 30)
+                        NavigationLink("Multiplayer Game", destination: MultiplayerHomeView())
+                            .frame(maxWidth: .infinity, maxHeight: 45)
+                            .background(.brown)
+                            .foregroundColor(.white)
+                            .font(.system(size: 16, weight: .bold))
+                            .cornerRadius(10)
+                            
+                        Spacer()
+                            .frame(width: 30)
+                    }
                     Spacer()
                 }
             } else {
@@ -60,6 +87,7 @@ struct HomeView: View {
                             vm.showGameMode.toggle()
                         } label: {
                             Text("< Back")
+                                .foregroundColor(.brown)
                         }
                         Spacer()
                     }
@@ -69,8 +97,14 @@ struct HomeView: View {
                     ScrollView{
                         ChooseSubjects(vm: vm.subVM)
                     }
-                    ButtonView(title: NSLocalizedString("Start game", comment: "")) {
-                        vm.isGame.toggle()
+                    HStack{
+                        Spacer()
+                            .frame(width: 30)
+                        ButtonView(title: "Start game") {
+                            vm.isGame.toggle()
+                        }
+                        Spacer()
+                            .frame(width: 30)
                     }
                 }
             }

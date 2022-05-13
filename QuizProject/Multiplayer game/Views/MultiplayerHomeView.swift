@@ -12,33 +12,69 @@ struct MultiplayerHomeView: View {
     @StateObject var vm: MultiplayerHomeVM = MultiplayerHomeVM()
     
     var body: some View {
-        VStack{
-            if (!vm.showGameDetails){
-                Button {
-                    vm.showGameDetails.toggle()
-                } label: {
-                    Text("Create Room")
-                }
-                NavigationLink("Join Room", destination: ChooseRoomView())
-                    .simultaneousGesture(TapGesture().onEnded({ _ in
-                        vm.timer.upstream.connect().cancel()
-                    }))
-            } else {
-                VStack{
-                    ScrollView{
-                        ChooseDifficulty(vm: vm.diffVM)
+        ZStack {
+            Color(UIColor(hue: 0.1056, saturation: 0.06, brightness: 0.98, alpha: 1.0)).ignoresSafeArea(.all)
+            VStack{
+                if (!vm.showGameDetails){
+//                    Button {
+//                        vm.showGameDetails.toggle()
+//                    } label: {
+//                        Text("Create Room")
+//                    }
+                    HStack{
+                        Spacer()
+                            .frame(width: 30)
+                        ButtonView(title: "Create Room") {
+                            vm.showGameDetails.toggle()
+                        }
+                        Spacer()
+                            .frame(width: 30)
                     }
-                    ScrollView{
-                        ChooseSubjects(vm: vm.subVM)
+                    HStack{
+                        Spacer()
+                            .frame(width: 30)
+                        NavigationLink("Join Room", destination: ChooseRoomView())
+                            .simultaneousGesture(TapGesture().onEnded({ _ in
+                                vm.timer.upstream.connect().cancel()
+                            }))
+                            .frame(maxWidth: .infinity, maxHeight: 45)
+                            .background(.brown)
+                            .foregroundColor(.white)
+                            .font(.system(size: 16, weight: .bold))
+                            .cornerRadius(10)
+                        Spacer()
+                            .frame(width: 30)
                     }
-                    if(vm.isCreateActive){
-                        NavigationLink("Create", destination: GameRoomView(vm: GameRoomViewModel(asCreator: true, subjects: vm.sendSubjects(), diffs: vm.sendDiffs(), roomName: "")))
+                } else {
+                    VStack{
+                        ScrollView{
+                            ChooseDifficulty(vm: vm.diffVM)
+                        }
+                        ScrollView{
+                            ChooseSubjects(vm: vm.subVM)
+                        }
+                        if(vm.isCreateActive){
+                            HStack{
+                                Spacer()
+                                    .frame(width: 30)
+                                NavigationLink("Create", destination: GameRoomView(vm: GameRoomViewModel(asCreator: true, subjects: vm.sendSubjects(), diffs: vm.sendDiffs(), roomName: "")))
+                                    .frame(maxWidth: .infinity, maxHeight: 45)
+                                    .background(.brown)
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 16, weight: .bold))
+                                    .cornerRadius(10)
+                                Spacer()
+                                    .frame(width: 30)
+                            }
+                        }
+                        Spacer()
+                            .frame(height: 20)
                     }
                 }
             }
+            .onReceive(vm.timer) { _ in
+                vm.checkCeateActive()
         }
-        .onReceive(vm.timer) { _ in
-            vm.checkCeateActive()
         }
     }
 }

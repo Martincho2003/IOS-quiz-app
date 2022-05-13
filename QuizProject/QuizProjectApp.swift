@@ -50,13 +50,19 @@ struct QuizProjectApp: App {
             switch sessionService.state {
             case .loggedIn:
                 NavigationView{
+                    ZStack{
+                        Color(UIColor(hue: 0.1056, saturation: 0.06, brightness: 0.98, alpha: 1.0)).ignoresSafeArea(.all)
                     HomeView()
                         .environmentObject(sessionService)
                         .navigationBarTitle("")
                         .navigationBarHidden(true)
+                    }
                 }
             case .loggedOut:
+                ZStack{
+                    Color(UIColor(hue: 0.1056, saturation: 0.06, brightness: 0.98, alpha: 1.0)).ignoresSafeArea(.all)
                 LoginView()
+                }
             }
         }
     }

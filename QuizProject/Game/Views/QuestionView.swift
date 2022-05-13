@@ -35,10 +35,19 @@ struct QuestionView: View {
                     Spacer()
                     
                     ForEach(vm.questions[vm.currentQuestion].answers, id: \.self) { answer in
-                        Button {
-                            print(vm.checkAnswer(answer))
-                        } label: {
-                            Text(answer.answer)
+//                        Button {
+//                            print(vm.checkAnswer(answer))
+//                        } label: {
+//                            Text(answer.answer)
+//                        }
+                        HStack{
+                            Spacer()
+                                .frame(width: 30)
+                            ButtonView(title: answer.answer) {
+                                vm.checkAnswer(answer)
+                            }
+                            Spacer()
+                                .frame(width: 30)
                         }
                     }
                     
@@ -59,7 +68,7 @@ struct QuestionView: View {
                         }
                             .frame(width: 80, height: 80)
                             .foregroundColor(Color.white)
-                            .background(Circle().fill(.blue))
+                            .background(Circle().fill(.brown))
                             .disabled(vm.isAddTimeDeactivated())
                         
                         Spacer()
@@ -78,7 +87,7 @@ struct QuestionView: View {
                         }
                             .frame(width: 80, height: 80)
                             .foregroundColor(Color.white)
-                            .background(Circle().fill(.blue))
+                            .background(Circle().fill(.brown))
                             .disabled(vm.isExcludeDeactivated())
                     }
                 }

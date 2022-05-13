@@ -34,7 +34,7 @@ struct LoginView: View {
                     message: Text(vm.eror?.localizedDescription ?? "No error")
                 )
             }
-            ButtonView(title: NSLocalizedString("Register", comment: ""), background: .white, foreground: .blue, border: .blue) { isRegister.toggle()
+            ButtonView(title: NSLocalizedString("Register", comment: ""), background: .white, foreground: .brown, border: .brown) { isRegister.toggle()
             }
             .sheet(isPresented: $isRegister) {
                 RegisterView()

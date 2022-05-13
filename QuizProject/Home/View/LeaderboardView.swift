@@ -17,12 +17,10 @@ struct LeaderboardView: View {
     
     var body: some View {
         if(!users.isEmpty){
-            ScrollView{
-                ForEach(users, id: \.self) { user in
-                    HStack {
-                        Text(user.username)
-                        Text("\(user.points)")
-                    }
+            ForEach(users, id: \.self) { user in
+                HStack(alignment: .center) {
+                    Text(user.username)
+                    Text("\(user.points)")
                 }
             }
         }
