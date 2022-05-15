@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ChooseDifficulty: View {
     
-    @ObservedObject private var vm: DifficultyViewModel //= DifficultyViewModel()
+    @ObservedObject private var vm: DifficultyViewModel
     
     init(vm: DifficultyViewModel) {
         self.vm = vm

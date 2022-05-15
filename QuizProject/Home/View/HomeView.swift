@@ -47,13 +47,6 @@ struct HomeView: View {
                     LeaderboardView(users: vm.topUsers)
                     Spacer()
                         .frame(height: 150)
-//                    Button {
-//                        vm.showGameMode.toggle()
-//                        print(vm.showGameMode)
-//                    } label: {
-//                        Text("Single Player Game")
-//                    }
-                    
                     HStack {
                         Spacer()
                             .frame(width: 30)

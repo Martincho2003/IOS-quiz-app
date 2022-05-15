@@ -47,10 +47,6 @@ struct GameRoomView: View {
                         }
                         Spacer()
                         if (vm.asCreator) {
-//                            Button(NSLocalizedString("Start game", comment: ""), action: {
-//                                vm.startGame()
-//                            })
-//                            .disabled(vm.isStartDisabled())
                             ButtonView(title: "Start game") {
                                 vm.startGame()
                             }

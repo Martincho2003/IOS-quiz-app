@@ -27,23 +27,11 @@ struct EndGameView: View {
                 Text("Congratulations")
                 Text("You earned \(points) points")
                 Spacer()
-//                Button {
-//                    print("going back")
-//                    service.sendPoints(points)
-//                    isHome.toggle()
-//                } label: {
-//                    Text("Go back")
-//                }
                 ButtonView(title: "Go back") {
                     service.sendPoints(points)
                     isHome.toggle()
                 }
             }
-
-//            NavigationLink(destination: HomeView().environmentObject(sessionService)) {
-//                Text("Go back")
-//            }
-//            .navigationBarBackButtonHidden(true)
         }
     }
 }

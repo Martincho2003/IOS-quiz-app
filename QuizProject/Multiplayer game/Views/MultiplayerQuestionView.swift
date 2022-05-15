@@ -34,11 +34,6 @@ struct MultiplayerQuestionView: View {
                     Spacer()
                     
                     ForEach(vm.room.questions[vm.currentQuestion].answers, id: \.self) { answer in
-//                        Button {
-//                            vm.checkAnswer(answer)
-//                        } label: {
-//                            Text(answer.answer)
-//                        }
                         ButtonView(title: answer.answer, background: .brown, foreground: .white, border: Color(UIColor(hue: 0.0972, saturation: 0.92, brightness: 0.77, alpha: 1.0))) {
                             vm.checkAnswer(answer)
                         }

@@ -35,11 +35,6 @@ struct QuestionView: View {
                     Spacer()
                     
                     ForEach(vm.questions[vm.currentQuestion].answers, id: \.self) { answer in
-//                        Button {
-//                            print(vm.checkAnswer(answer))
-//                        } label: {
-//                            Text(answer.answer)
-//                        }
                         HStack{
                             Spacer()
                                 .frame(width: 30)

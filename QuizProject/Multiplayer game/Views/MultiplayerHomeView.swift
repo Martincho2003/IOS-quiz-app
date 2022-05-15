@@ -16,11 +16,6 @@ struct MultiplayerHomeView: View {
             Color(UIColor(hue: 0.1056, saturation: 0.06, brightness: 0.98, alpha: 1.0)).ignoresSafeArea(.all)
             VStack{
                 if (!vm.showGameDetails){
-//                    Button {
-//                        vm.showGameDetails.toggle()
-//                    } label: {
-//                        Text("Create Room")
-//                    }
                     HStack{
                         Spacer()
                             .frame(width: 30)
