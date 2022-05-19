@@ -50,7 +50,7 @@ struct HomeView: View {
                     HStack {
                         Spacer()
                             .frame(width: 30)
-                        ButtonView(title: "Single Player Game") {
+                        ButtonView(title: NSLocalizedString("Single Player Game", comment: "")) {
                             vm.showGameMode.toggle()
                         }
                         Spacer()
@@ -61,7 +61,7 @@ struct HomeView: View {
                     HStack {
                         Spacer()
                             .frame(width: 30)
-                        NavigationLink("Multiplayer Game", destination: MultiplayerHomeView())
+                        NavigationLink(NSLocalizedString("Multiplayer Game", comment: ""), destination: MultiplayerHomeView())
                             .frame(maxWidth: .infinity, maxHeight: 45)
                             .background(.brown)
                             .foregroundColor(.white)
@@ -93,7 +93,7 @@ struct HomeView: View {
                     HStack{
                         Spacer()
                             .frame(width: 30)
-                        ButtonView(title: "Start game") {
+                        ButtonView(title: NSLocalizedString("Start game", comment: "")) {
                             vm.isGame.toggle()
                         }
                         Spacer()

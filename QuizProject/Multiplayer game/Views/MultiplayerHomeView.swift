@@ -19,7 +19,7 @@ struct MultiplayerHomeView: View {
                     HStack{
                         Spacer()
                             .frame(width: 30)
-                        ButtonView(title: "Create Room") {
+                        ButtonView(title: NSLocalizedString("Create room", comment: "")) {
                             vm.showGameDetails.toggle()
                         }
                         Spacer()
@@ -28,7 +28,7 @@ struct MultiplayerHomeView: View {
                     HStack{
                         Spacer()
                             .frame(width: 30)
-                        NavigationLink("Join Room", destination: ChooseRoomView())
+                        NavigationLink(NSLocalizedString("Join room", comment: ""), destination: ChooseRoomView())
                             .simultaneousGesture(TapGesture().onEnded({ _ in
                                 vm.timer.upstream.connect().cancel()
                             }))
@@ -52,7 +52,7 @@ struct MultiplayerHomeView: View {
                             HStack{
                                 Spacer()
                                     .frame(width: 30)
-                                NavigationLink("Create", destination: GameRoomView(vm: GameRoomViewModel(asCreator: true, subjects: vm.sendSubjects(), diffs: vm.sendDiffs(), roomName: "")))
+                                NavigationLink(NSLocalizedString("Create", comment: ""), destination: GameRoomView(vm: GameRoomViewModel(asCreator: true, subjects: vm.sendSubjects(), diffs: vm.sendDiffs(), roomName: "")))
                                     .frame(maxWidth: .infinity, maxHeight: 45)
                                     .background(.brown)
                                     .foregroundColor(.white)

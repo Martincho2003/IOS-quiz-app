@@ -25,7 +25,7 @@
 "Create" = "Създай";
 
 /* No comment provided by engineer. */
-"Create Room" = "Създаване на стая";
+"Create room" = "Създаване на стая";
 
 /* No comment provided by engineer. */
 "Easy mode" = "Лесен режим";
@@ -40,13 +40,13 @@
 "Hard mode" = "Труден режим";
 
 /* No comment provided by engineer. */
-"Join Room" = "Присъединяване към стая";
+"Join room" = "Присъединяване към стая";
 
 /* No comment provided by engineer. */
 "Logout" = "Излез";
 
 /* No comment provided by engineer. */
-"MultiPlayer Game" = "Онлайн игра";
+"Multiplayer Game" = "Онлайн игра";
 
 /* No comment provided by engineer. */
 "Quiz game" = "Викторини";

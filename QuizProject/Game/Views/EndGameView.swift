@@ -27,7 +27,7 @@ struct EndGameView: View {
                 Text("Congratulations")
                 Text("You earned \(points) points")
                 Spacer()
-                ButtonView(title: "Go back") {
+                ButtonView(title: NSLocalizedString("Go back", comment: "")) {
                     service.sendPoints(points)
                     isHome.toggle()
                 }
